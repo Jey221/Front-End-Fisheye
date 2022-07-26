@@ -1,33 +1,20 @@
     async function getPhotographers() {
         // Penser à remplacer par les données récupérées dans le json
-        const photographers = [
-            {
-                "name": "Ma data test",
-                "id": 1,
-                "city": "Paris",
-                "country": "France",
-                "tagline": "Ceci est ma data test",
-                "price": 400,
-                "portrait": "account.png"
-            },
-            {
-                "name": "Autre data test",
-                "id": 2,
-                "city": "Londres",
-                "country": "UK",
-                "tagline": "Ceci est ma data test 2",
-                "price": 500,
-                "portrait": "account.png"
-            },
-        ]
+
+        let response = await fetch("data/photographers.json");
+        console.log(response);
+        let data = await response.json();
+        console.log(data);
+        let photographers = await data.photographers;
+        console.log(photographers);
+
         // et bien retourner le tableau photographers seulement une fois
         return ({
-            photographers: [...photographers, ...photographers, ...photographers]})
+            photographers: [...photographers]})
     }
 
-    async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
-
+    async function displayData(photographers) {    
+        const photographersSection = document.querySelector(".photographer_section");// crée une const pour ajouter les articles sur la page
         photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
@@ -40,6 +27,5 @@
         const { photographers } = await getPhotographers();
         displayData(photographers);
     };
-    
     init();
     

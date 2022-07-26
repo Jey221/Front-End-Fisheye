@@ -43,7 +43,12 @@ h1 {
     color: #D3573C;
     font-size: 36px;
 }
+.photographer_section article P {
+    color: #901C1C;
+    font-size: 20px;
+    margin: 0%;
 
+}
 .photographer_section article img {
     height: 200px;
     width: 200px;
