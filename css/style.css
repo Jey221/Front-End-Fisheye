@@ -4,7 +4,9 @@ body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
 }
-
+main {
+    padding-bottom: 5%;
+}
 
 header {
     display: flex;
@@ -34,22 +36,37 @@ h1 {
 .photographer_section article {
     justify-self: center;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    text-align: center;
 }
 
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
+    margin: 0%;
+    white-space: nowrap;
 }
-.photographer_section article P {
+.ville {
     color: #901C1C;
     font-size: 20px;
+    margin: 0%;
+}
+.tagline {
+    color: black;
+    font-size: 16px;
+    margin: 0%;
+
+}
+.prix {
+    font-size: 12px;
+    color: lightslategrey;
     margin: 0%;
 
 }
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
 }
