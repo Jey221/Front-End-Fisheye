@@ -2,11 +2,8 @@
         // Penser à remplacer par les données récupérées dans le json
 
         let response = await fetch("data/photographers.json");
-        console.log(response);
         let data = await response.json();
-        console.log(data);
         let photographers = await data.photographers;
-        console.log(photographers);
 
         // et bien retourner le tableau photographers seulement une fois
         return ({
