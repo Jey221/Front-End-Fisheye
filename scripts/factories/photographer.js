@@ -3,42 +3,58 @@ function photographerFactory(data) {
     const picture = `assets/photographers/${portrait}`;
     function getUserCardDOM() {   
 
-        
-
         //création des éléments du DOM
+        //création des articles
         const article = document.createElement( 'article' );
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        const h2 = document.createElement( 'h2' );
-        const pCity = document.createElement( 'p' );
-        const pTagline = document.createElement( 'p' );
-        const pPrice = document.createElement( 'p' );
+
+        //création des articles
+        const card = document.createElement("section");
+        card.setAttribute("class","card");
+        article.appendChild(card);
+
+        //création des liens 
         const a = document.createElement('a');
+        a.setAttribute("class","lienCliquable");
+        a.setAttribute("href","photographer.html?id=" + this.id);
+        a.setAttribute("aria-label", "lien vers page du photographe");
+        card.appendChild(a);
 
-        //insertion de la variable dans les éléments créés
+        //création des conteneur photo
+        const container = document.createElement('div');
+        container.setAttribute("class","container");
+        a.appendChild(container);
+
+        //intégration des photos
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture);
+        img.setAttribute("alt", "photo du photographe");
+        img.setAttribute("class", "imgPhotographe");
+        container.appendChild(img);
+
+        //intégration des noms des photographes
+        const h2 = document.createElement( 'h2' );
         h2.textContent = name;
+        a.appendChild(h2);
+
+        //intégration des infos du photographe (non cliquable)
+        //ville
+        const pCity = document.createElement( 'p' );
         pCity.textContent = city +", "+ country;
-        pTagline.textContent = tagline;
-        pPrice.textContent = price + "€/jour";
-
-        //faire apparaitre l'enfant dans le parent
-        article.appendChild(img);
-        article.appendChild(h2);
         article.appendChild(pCity);
-        article.appendChild(pTagline);
-        article.appendChild(pPrice);
-
-        //mise en place des liens pour les pages des photographes
-        this.id=data.id;
-        const liens = {img , h2}
-        console.log(liens);
-
-        a.href = "photographer.html?id=${this.id}";
-
-
-        //ajout de class spécifique pour la mise en forme CSS
         pCity.classList.add('ville');
+
+
+        //tagline
+        const pTagline = document.createElement( 'p' );
+        pTagline.textContent = tagline;
+        article.appendChild(pTagline);
         pTagline.classList.add('tagline');
+
+
+        //prix
+        const pPrice = document.createElement( 'p' );
+        pPrice.textContent = price + "€/jour";
+        article.appendChild(pPrice);
         pPrice.classList.add('prix');
 
         return (article);

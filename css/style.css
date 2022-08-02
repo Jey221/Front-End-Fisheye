@@ -48,6 +48,9 @@ h1 {
     margin: 0%;
     white-space: nowrap;
 }
+.lienCliquable {
+    text-decoration: none;
+}
 .ville {
     color: #901C1C;
     font-size: 20px;
