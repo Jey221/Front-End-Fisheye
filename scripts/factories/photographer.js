@@ -15,8 +15,9 @@ function photographerFactory(data) {
         //création des liens 
         const a = document.createElement('a');
         a.setAttribute("class","lienCliquable");
+        this.id = data.id;
         a.setAttribute("href","photographer.html?id=" + this.id);
-        a.setAttribute("aria-label", "lien vers page du photographe");
+        a.setAttribute("aria-label", "lien vers page de " + this.name);
         card.appendChild(a);
 
         //création des conteneur photo
@@ -27,7 +28,8 @@ function photographerFactory(data) {
         //intégration des photos
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
-        img.setAttribute("alt", "photo du photographe");
+        this.name = data.name;
+        img.setAttribute("alt", "photo de profil de " + this.name );
         img.setAttribute("class", "imgPhotographe");
         container.appendChild(img);
 
