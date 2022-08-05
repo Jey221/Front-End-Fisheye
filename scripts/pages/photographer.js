@@ -1,4 +1,8 @@
 //Mettre le code JavaScript lié à la page photographer.html
+//import des données
+//import Media from '../factories/media'
+
+//création d'une constante correspondante a l'URL
 const idPage = window.location.search.split("?id=").join("");
 
 //mise en place d'une fonction pour recupèrer infos du json
