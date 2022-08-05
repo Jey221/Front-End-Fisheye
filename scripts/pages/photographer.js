@@ -1,59 +1,60 @@
 //Mettre le code JavaScript lié à la page photographer.html
+const idPage = window.location.search.split("?id=").join("");
 
+//mise en place d'une fonction pour recupèrer infos du json
 async function getInfosPhotographer() {
 
     let response = await fetch("data/photographers.json");
     let data = await response.json();
-    console.log(data);
-
     let photographers = await data.photographers;
+    //filtre pour avoir infos du photographe sur la page
+    const tabPhotographe = photographers.filter(value => {
+        if( value.id == idPage ) return true;
+        });
     let media = await data.media;
-    console.log(photographers);
-    console.log(media);
-
-    return ({photographers: [...photographers]});
+    return ({tabPhotographe: [...tabPhotographe]});
 };
-console.log(getInfosPhotographer());
 
-async function displayData(photographers) {    
+//mise en place d'une fonction pour afficher le contenu
+async function displayData(tabPhotographe) {    
     const profil = document.getElementById('photographer-profil');
-    photographers.forEach((photographer) => {
-        const photographerModel = infoFactory(photographer);
+
+    tabPhotographe.forEach((tabPhotographe) => {
+        const photographerModel = infoFactory(tabPhotographe);
         const userCardDOM = photographerModel.getPhotographersInfos();
-        profil.appendChild(userCardDOM);
+        const buttonForm = document.querySelector('.contact_button')  
+        profil.insertBefore(userCardDOM , buttonForm);
     });
+
 };
 async function init() {
     // Récupère les datas des photographes
-    const { photographers } = await getInfosPhotographer();
-    displayData(photographers);
+    const { tabPhotographe } = await getInfosPhotographer();
+    displayData(tabPhotographe);
 };
 init();
 
 
-//mise en place d'une fonction pour la mise en place des info sur page Photograher
+//mise en place d'une fonction pour les différentes info sur page Photographer
 
-function infoFactory(data) {    
-    const { name, portrait, city, country, tagline, price } = data; 
+function infoFactory(data) {  
     function getPhotographersInfos() { 
 
         //selectionner l'espace du profil photographe
         const profil = document.getElementById('photographer-profil');
         const buttonForm = document.querySelector('.contact_button')
-        console.log(profil);
-
 
         //créer une div pour les info du photographe
         const infoPhotographe = document.createElement( 'div' );
         infoPhotographe.setAttribute("class","infoPhotographe");
         profil.insertBefore(infoPhotographe , buttonForm);
 
+
         //créer une div pour chaque lignes d'infos
         //NOM
         const nomPhotographe = document.createElement( 'div' );
         nomPhotographe.setAttribute("class","nomPhotographe");
         infoPhotographe.appendChild(nomPhotographe);
-        h2.textContent = name;
 
         //VILLE,PAYS
         const villePhotographe = document.createElement( 'div' );
@@ -72,26 +73,46 @@ function infoFactory(data) {
         //NOM
         const h2 = document.createElement( 'h2' );
         nomPhotographe.appendChild(h2);
-        //h2.textContent = city +", "+ country;
+        this.name = data.name;
+        h2.textContent = this.name;
 
         //VILLE,PAYS
         const pVille = document.createElement( 'p' );
         villePhotographe.appendChild(pVille);
         pVille.classList.add('p_Ville_Info_Photographe');
-        //pCity.textContent = city +", "+ country;
+        this.city=data.city;
+        this.country=data.country;
+        pVille.textContent = this.city +", "+ this.country;;
 
         //TAGLINE
         const pTagline = document.createElement( 'p' );
         taglinePhotographe.appendChild(pTagline);
         pTagline.classList.add('p_Tagline_Info_Photographe');
-        //pCity.textContent = city +", "+ country;
+        this.tagline=data.tagline;
+        pTagline.textContent = this.tagline;
 
         //TAG LIST
+        
+        //créer une div pour la photo de profil du photographe
+        const photoProfil = document.createElement( 'div' );
+        photoProfil.setAttribute("class","photoProfil");
+        profil.appendChild(photoProfil);
+
+        //insérer la photo de profil du photographe
+        const profilPicture = data.portrait;
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", `assets/photographers/${profilPicture}`);
+        photoProfil.appendChild(img);
+        img.setAttribute("alt", "photo de profil de " + this.name );
+        img.setAttribute("class", "photo_profil_info_photographe");
+
+
         return (infoPhotographe);
     };
     return { getPhotographersInfos };
 
 };
-console.log(infoFactory());
+
+infoFactory();
 
 
