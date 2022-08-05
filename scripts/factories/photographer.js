@@ -60,6 +60,6 @@ function photographerFactory(data) {
         pPrice.classList.add('prix');
 
         return (article);
-    }
-    return { name, picture, getUserCardDOM }
-}
+    };
+    return { getUserCardDOM };
+};
