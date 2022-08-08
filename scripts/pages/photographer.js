@@ -118,9 +118,9 @@ function infoFactory(data) {
 infoFactory();
 
 getMediaPhotographer();
-displayDataMedia();
-init2();
-mediaFactory();
+//displayDataMedia();
+//init2();
+//mediaFactory();
 /**console.log(getMediaPhotographer());
 console.log(displayDataMedia());
 console.log(init2());

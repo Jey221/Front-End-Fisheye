@@ -72,21 +72,33 @@ function mediaFactory(data) {
         card.appendChild(a);
 
         //intégrer le media
-        const pictureName = data.image;
-        console.log(pictureName);
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", `assets/picture/${idPage}/${pictureName}`);
-        article.appendChild(img);
-        img.setAttribute("class", "medias");
+        let articleMedia;
 
-        //img.setAttribute("alt", "photo de profil de " + this.name );
-        //img.setAttribute("class", "photo_profil_info_photographe");
-
+        if (data.hasOwnProperty('image')) {
+                const pictureName = data.image;
+                const titlePicture = data.title;
+                articleMedia = document.createElement( 'img' );
+                articleMedia.setAttribute("src", `assets/picture/${idPage}/${pictureName}`);
+                article.appendChild(articleMedia);
+                articleMedia.setAttribute("class", "medias");
+                articleMedia.setAttribute("alt", "photo de profil de " + titlePicture );
+        }else if (data.hasOwnProperty('video')) {
+            const videoName = data.video;
+            const titlePicture = data.title;
+            articleMedia = document.createElement('video')
+            articleMedia.setAttribute("src", `assets/picture/${idPage}/${videoName}`);
+            article.appendChild(articleMedia);
+            articleMedia.setAttribute("class", "medias");
+                articleMedia.setAttribute("alt", "photo de profil de " + titlePicture );
+        };
 
         //création du footer
         const footer = document.createElement( 'footer' );
         footer.setAttribute("class","footerMedias");
         article.appendChild(footer);
+
+        //intégrer les infos du footer
+
 
 
         return (article);
