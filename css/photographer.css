@@ -99,3 +99,13 @@ form input {
     width: 200px;
     border-radius: 50%;
 }
+.medias {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    object-position: center top;
+    transform: translateY(0px) scale(1);
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 3px rgb(0 0 0 / 10%);
+}

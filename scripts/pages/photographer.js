@@ -1,6 +1,6 @@
 //Mettre le code JavaScript lié à la page photographer.html
 //import des données
-//import Media from '../factories/media'
+import {getMediaPhotographer,displayDataMedia,init2,mediaFactory} from '../factories/media.js'
 
 //création d'une constante correspondante a l'URL
 const idPage = window.location.search.split("?id=").join("");
@@ -15,14 +15,12 @@ async function getInfosPhotographer() {
     const tabPhotographe = photographers.filter(value => {
         if( value.id == idPage ) return true;
         });
-    let media = await data.media;
     return ({tabPhotographe: [...tabPhotographe]});
 };
 
 //mise en place d'une fonction pour afficher le contenu
 async function displayData(tabPhotographe) {    
     const profil = document.getElementById('photographer-profil');
-
     tabPhotographe.forEach((tabPhotographe) => {
         const photographerModel = infoFactory(tabPhotographe);
         const userCardDOM = photographerModel.getPhotographersInfos();
@@ -119,4 +117,11 @@ function infoFactory(data) {
 
 infoFactory();
 
-
+getMediaPhotographer();
+displayDataMedia();
+init2();
+mediaFactory();
+/**console.log(getMediaPhotographer());
+console.log(displayDataMedia());
+console.log(init2());
+console.log(mediaFactory());*/
