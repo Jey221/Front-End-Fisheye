@@ -23,16 +23,31 @@
         <!--section injecté par code javascript-->
       </section>
     </main>
+    <template id="template_lightbox">
+
+    </template>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
+          <h2 id="titreModalContact"></h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="prénom">Prénom</label>
+						<input class="text_control" type="text" id="prénom" name="prénom" minlength="2" maxlength="30"/>
+					</div>
+          <div>
+						<label for="nom">Nom</label>
+						<input class="text_control" type="text" id="nom" name="nom" minlength="2" maxlength="30"/>
+					</div>
+					<div>
+						<label for="email">Email</label>
+						<input class="text_control" type="email" id="email" name="email"/>
+					</div>
+					<div>
+						<label for="message">Votre message</label>
+						<textarea class="text_control" type="text" id="message" name="message"  rows="10" cols="60" maxlength="300"></textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>

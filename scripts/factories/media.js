@@ -1,4 +1,5 @@
 //mise en place des fonction pour les media sur la page photographers
+//import {displayLightbox,closeLightbox} from '../utils/lightbox.js'
 
 //création d'une constante correspondante a l'URL
 const idPage = window.location.search.split("?id=").join("");
@@ -50,13 +51,15 @@ function mediaFactory(data) {
         //créer les espaces pour le media cliquable
         const card = document.createElement( 'div' );
         card.setAttribute("class","cardMedia");
+        //card.onclick = displayLightbox();
         article.appendChild(card);
 
-        //créer le lien
+
+        /*//créer le lien
         const a = document.createElement( 'a' );
         a.setAttribute("href","");
         a.setAttribute("aria-label", "lien vers media");
-        card.appendChild(a);
+        card.appendChild(a);*/
 
         //intégrer le media
         let articleMedia;
@@ -66,7 +69,7 @@ function mediaFactory(data) {
             const titlePicture = data.title;
             articleMedia = document.createElement( 'img' );
             articleMedia.setAttribute("src", `assets/picture/${idPage}/${pictureName}`);
-            article.appendChild(articleMedia);
+            card.appendChild(articleMedia);
             articleMedia.setAttribute("class", "medias");
             articleMedia.setAttribute("alt", "photo de " + titlePicture );
         }else if (data.hasOwnProperty('video')) {
@@ -74,7 +77,7 @@ function mediaFactory(data) {
             const titlePicture = data.title;
             articleMedia = document.createElement('video')
             articleMedia.setAttribute("src", `assets/picture/${idPage}/${videoName}`);
-            article.appendChild(articleMedia);
+            card.appendChild(articleMedia);
             articleMedia.setAttribute("class", "medias");
             articleMedia.setAttribute("alt", "video de " + titlePicture );
         };

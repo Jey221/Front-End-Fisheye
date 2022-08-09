@@ -119,6 +119,11 @@ function infoFactory(data) {
         encartTarif.appendChild(spanLike);
         encartTarif.appendChild(spanPrix);
         spanPrix.textContent = data.price + "€/jour";
+        
+        //intégrer nom du photographe dans le modal
+        const titreModal = document.getElementById("titreModalContact");
+        titreModal.textContent = "Contactez-moi " + this.name;
+
 
 
         return (infoPhotographe);
