@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -24,7 +25,18 @@
       </section>
     </main>
     <template id="template_lightbox">
-
+      <div id="arrowLeft">
+        <img src="assets/icons/chevron-left-solid.svg"/>
+      </div>
+      <div id="lightboxMain">
+        <figure id="mediaLightbox">
+          <figcaption id="info_media_lightbox"></figcaption>
+        </figure>
+      </div>
+      <div id="arrowRight">
+        <img src="assets/icons/chevron-right-solid.svg"/>
+      </div>
+      <img src="assets/icons/close.svg" onclick="" />
     </template>
     <div id="contact_modal">
 			<div class="modal">

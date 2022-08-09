@@ -62,10 +62,12 @@ function infoFactory(data) {
         const villePhotographe = document.createElement( 'div' );
         villePhotographe.setAttribute("class","villePhotographe");
         infoPhotographe.appendChild(villePhotographe);
+
         //TAGLINE
         const taglinePhotographe = document.createElement( 'div' );
         taglinePhotographe.setAttribute("class","taglinePhotographe");
         infoPhotographe.appendChild(taglinePhotographe);
+        
         //TAG LIST
         const tagListPhotographe = document.createElement( 'div' );
         tagListPhotographe.setAttribute("class","tagListPhotographe");
@@ -138,7 +140,3 @@ getMediaPhotographer();
 //displayDataMedia();
 //init2();
 //mediaFactory();
-/**console.log(getMediaPhotographer());
-console.log(displayDataMedia());
-console.log(init2());
-console.log(mediaFactory());*/
