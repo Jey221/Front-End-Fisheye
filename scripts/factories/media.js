@@ -19,7 +19,6 @@ async function getMediaPhotographer() {
 //mise en place d'une fonction pour afficher le contenu
 async function displayDataMedia(tabMedia) {    
     const gallery = document.getElementById('gallery');
-    console.log(tabMedia);
     tabMedia.forEach((tabMedia) => {
         const photographerModel = mediaFactory(tabMedia);
         const userCardDOM = photographerModel.getPhotographersMedias();
@@ -39,18 +38,6 @@ init2();
 function mediaFactory(data) {  
     let dataMedia = getMediaPhotographer();
 
-    /**console.log(getMediaPhotographer());
-    const { photographerId, image, video } = data;
-    let link, linkNoExtension, pictureName;
-
-    if (data.hasOwnProperty('image')) {
-        pictureName = image.slice(0, -4);
-        link = `./assets/picture/${photographerId}/${image}`;
-        linkNoExtension = `./assets/picture/${photographerId}/${pictureName}`
-    } else if (data.hasOwnProperty('video')) 
-    {
-        link = `./assets/photos/${photographerId}/${video}`;
-    };*/
     function getPhotographersMedias() { 
 
         //créer les espaces pour les medias
@@ -75,13 +62,13 @@ function mediaFactory(data) {
         let articleMedia;
 
         if (data.hasOwnProperty('image')) {
-                const pictureName = data.image;
-                const titlePicture = data.title;
-                articleMedia = document.createElement( 'img' );
-                articleMedia.setAttribute("src", `assets/picture/${idPage}/${pictureName}`);
-                article.appendChild(articleMedia);
-                articleMedia.setAttribute("class", "medias");
-                articleMedia.setAttribute("alt", "photo de profil de " + titlePicture );
+            const pictureName = data.image;
+            const titlePicture = data.title;
+            articleMedia = document.createElement( 'img' );
+            articleMedia.setAttribute("src", `assets/picture/${idPage}/${pictureName}`);
+            article.appendChild(articleMedia);
+            articleMedia.setAttribute("class", "medias");
+            articleMedia.setAttribute("alt", "photo de " + titlePicture );
         }else if (data.hasOwnProperty('video')) {
             const videoName = data.video;
             const titlePicture = data.title;
@@ -89,7 +76,7 @@ function mediaFactory(data) {
             articleMedia.setAttribute("src", `assets/picture/${idPage}/${videoName}`);
             article.appendChild(articleMedia);
             articleMedia.setAttribute("class", "medias");
-                articleMedia.setAttribute("alt", "photo de profil de " + titlePicture );
+            articleMedia.setAttribute("alt", "video de " + titlePicture );
         };
 
         //création du footer
@@ -98,8 +85,11 @@ function mediaFactory(data) {
         article.appendChild(footer);
 
         //intégrer les infos du footer
-
-
+        const span = document.createElement( 'span' );
+        article.appendChild(span);
+        span.setAttribute("class","article_media_title");
+        span.textContent = data.title;
+     
 
         return (article);
     };

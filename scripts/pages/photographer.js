@@ -109,6 +109,18 @@ function infoFactory(data) {
         img.setAttribute("class", "photo_profil_info_photographe");
 
 
+        //intégrer encart tarif & total like
+        const gallery = document.getElementById('gallery');
+        const encartTarif = document.createElement( "aside" );
+        gallery.appendChild(encartTarif);
+        encartTarif.setAttribute("class","encartTarif");
+        const spanPrix = document.createElement( 'span' );
+        const spanLike = document.createElement( 'span' );
+        encartTarif.appendChild(spanLike);
+        encartTarif.appendChild(spanPrix);
+        spanPrix.textContent = data.price + "€/jour";
+
+
         return (infoPhotographe);
     };
     return { getPhotographersInfos };
