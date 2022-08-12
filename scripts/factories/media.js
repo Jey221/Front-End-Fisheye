@@ -37,8 +37,7 @@ init2();
 
 //mise en place d'une fonction pour les différentes info sur page Photographer
 function mediaFactory(data) {  
-    let dataMedia = getMediaPhotographer();
-
+    
     function getPhotographersMedias() { 
 
         //créer les espaces pour les medias

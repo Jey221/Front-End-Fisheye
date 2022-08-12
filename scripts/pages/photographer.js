@@ -1,7 +1,7 @@
 //Mettre le code JavaScript lié à la page photographer.html
 //import des données
-import {getMediaPhotographer,displayDataMedia,init2,mediaFactory} from '../factories/media.js'
-
+import {getMediaPhotographer} from '../factories/media.js'
+//import {closeLightbox} from '../utils/lightbox.js'
 //création d'une constante correspondante a l'URL
 const idPage = window.location.search.split("?id=").join("");
 

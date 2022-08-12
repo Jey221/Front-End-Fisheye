@@ -24,20 +24,27 @@
         <!--section injecté par code javascript-->
       </section>
     </main>
-    <template id="template_lightbox">
-      <div id="arrowLeft">
-        <img src="assets/icons/chevron-left-solid.svg"/>
+    <aside class="modal_lightbox">
+      <div id="template_lightbox">
+        <div id="arrowLeft" class="arrow prev">
+          <img src="assets/icons/chevron-left-solid.svg"/>
+        </div>
+        <div id="mediaContainerZone">
+          <div class="containerMedia">
+            <span id="mediaLightbox"><img src="/assets/picture/195/Travel_Tower.jpg" alt=""></span>
+          </div>
+          <div class="containerDetail">
+            <span id="infoMediaLightbox">la vue d'un balcon</span>
+          </div>
+        </div>
+        <div id="arrowRight" class="arrow next">
+          <img src="assets/icons/chevron-right-solid.svg"/>
+        </div>
+        <div id="closeLightbox">
+          <img src="assets/icons/close2.svg" onclick="closeLightbox()" />
+        </div>
       </div>
-      <div id="lightboxMain">
-        <figure id="mediaLightbox">
-          <figcaption id="info_media_lightbox"></figcaption>
-        </figure>
-      </div>
-      <div id="arrowRight">
-        <img src="assets/icons/chevron-right-solid.svg"/>
-      </div>
-      <img src="assets/icons/close.svg" onclick="" />
-    </template>
+    </aside>
     <div id="contact_modal">
 			<div class="modal">
 				<header>

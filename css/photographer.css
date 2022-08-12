@@ -1,6 +1,3 @@
-#contact_modal {
-    display: none;
-}
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
@@ -56,16 +53,30 @@
     transition: all 0.25s ease;
     box-shadow: 0 3px 3px rgb(0 0 0 / 10%);
 }
+.cardMedia {
+    cursor: pointer;
+}
+.cardMedia :hover{
+    transform: scale(1.1);
+}
+article {
+    margin-bottom: 2%;
+}
+.footerMedias {
+    margin-top: 5%;
+}
 #gallery {
     padding: 2%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 5%;
 }
 /***********************FORMULAIRE DE CONTACT***************************/
 #contact_modal {
+    display: none;
     position: absolute;
     z-index: 1;
     left: 130px;
@@ -132,4 +143,58 @@ form input , form textarea {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+/****************************LIGHTBOX*************/
+.modal_lightbox {
+    display: none;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1;
+    left: 0;
+    top: 0;
+}
+#template_lightbox {
+    display: flex;
+    position: fixed;
+    width: 90%;
+    align-items: center;
+    padding: 5%;
+}
+#mediaContainerZone {
+    width: 100%;
+}
+.containerMedia {
+    display: flex;
+    justify-content: center;
+}
+#mediaLightbox {
+    display: flex;
+    justify-content: center; 
+}
+#mediaLightbox img {
+    width: 80%;
+}
+#infoMediaLightbox {
+    position: relative;
+    left: 10%;
+}
+#closeLightbox img {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.arrow {
+    cursor: pointer;
+    width: 3%;
+}
+.arrow.prev {
+    left: 0px;
+}
+.arrow.next {
+    right: 0px;
 }
