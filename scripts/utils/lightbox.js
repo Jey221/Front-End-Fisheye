@@ -1,10 +1,10 @@
-import {getMediaPhotographer} from '../factories/media.js'
+import {getMediaPhotographer, displayDataMedia, init2} from '../factories/media.js'
 
-/*function displayLightbox() {
-    const lightbox = document.getElementById("template_lightbox");
-    console.log(lightbox);
-	lightbox.style.display = "block";
-}*/
+const idPage = window.location.search.split("?id=").join("");
+console.log(idPage);
+
+
+/*
 
 function closeLightbox() {
     const lightbox = document.getElementById("template_lightbox");
@@ -13,3 +13,4 @@ function closeLightbox() {
 getMediaPhotographer ();
 console.log(getMediaPhotographer ());
 export {closeLightbox}
+*/

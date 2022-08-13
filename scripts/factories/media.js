@@ -53,13 +53,6 @@ function mediaFactory(data) {
         //card.onclick = displayLightbox();
         article.appendChild(card);
 
-
-        /*//créer le lien
-        const a = document.createElement( 'a' );
-        a.setAttribute("href","");
-        a.setAttribute("aria-label", "lien vers media");
-        card.appendChild(a);*/
-
         //intégrer le media
         let articleMedia;
 
