@@ -1,5 +1,5 @@
 //mise en place des fonction pour les media sur la page photographers
-//import {displayLightbox,closeLightbox} from '../utils/lightbox.js'
+//import {displayLightbox} from '../utils/lightbox.js'
 
 //création d'une constante correspondante a l'URL
 const idPage = window.location.search.split("?id=").join("");
@@ -54,6 +54,7 @@ function mediaFactory(data) {
         article.appendChild(card);
 
         //intégrer le media
+
         let articleMedia;
 
         if (data.hasOwnProperty('image')) {
@@ -84,7 +85,6 @@ function mediaFactory(data) {
         article.appendChild(span);
         span.setAttribute("class","article_media_title");
         span.textContent = data.title;
-     
 
         return (article);
     };
