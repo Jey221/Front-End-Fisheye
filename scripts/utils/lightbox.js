@@ -1,36 +1,75 @@
-import {getMediaPhotographer, mediaFactory, init2} from '../factories/media.js'
+//import des fonctions
+import {getMediaPhotographer} from '../factories/media.js'
 
-
-const idPage = window.location.search.split("?id=").join("");
+//récupération des datas
 const promise = getMediaPhotographer();
 const data = await promise.catch(() => false);
 
-const gallery = document.querySelectorAll(".cardMedia .medias")
+
+
+//création des variables pour la lightbox
+const gallery = document.querySelectorAll(".medias")
 const lightbox = document.querySelector(".modal_lightbox");
 const closeButton = document.getElementById("closeLightbox");
+const prevButton = document.getElementById("arrowLeft");
+const nextButton = document.getElementById("arrowRight");
 const mediaLightbox = document.getElementById("mediaLightbox");
 const infoLightbox = document.getElementById("infoMediaLightbox")
-const img = document.createElement( 'img' );
 const pInfo = document.createElement( 'p' );
 
+const data2 = data.tabMedia
+const data3 = data2.title
+console.log(data3);
+let media;
 
-console.log(infoLightbox);
-
+//fonction pour l'utilisation de la lightbox
 Array.prototype.map.call(gallery, (b) => {
+    //ouverture de la lightbox
     b.addEventListener("click", function displayLightbox() {
-        console.log(b.alt);
-        console.log(b.src);
         lightbox.style.display = "block";
-        img.setAttribute("src", b.src );
-        mediaLightbox.appendChild(img);
-        pInfo.textContent = b.alt;
-        infoLightbox.appendChild(pInfo);
+        //récupération de la cible
+        const target = [b];
+        console.log(target[0].alt);
 
+        //mise en place du titre en fonction de la cible
+        pInfo.textContent = target[0].alt;
+        infoLightbox.appendChild(pInfo);
+        //fais apparaitre le media selon sont type
+        if (target[0].className === "medias image" ) {
+            //Si Image
+            media = document.createElement( 'img' );
+            media.classList.add('imageLightbox')
+        	media.setAttribute("src", target[0].src );
+        	media.setAttribute("alt", target[0].alt );
+        	mediaLightbox.appendChild(media);
+
+        }else{
+            //Si Video
+            console.log(target[0].alt);
+            media = document.createElement( 'video' );
+            media.classList.add('videoLightbox')
+        	media.setAttribute("src", target[0].src );
+            media.setAttribute("alt", target[0].alt );
+            media.controls = true;
+        	mediaLightbox.appendChild(media);
+        };
     });
+    //fermeture de la lightbox
     closeButton.addEventListener("click", function closeLightbox() {
+        mediaLightbox.removeChild(media);
         lightbox.style.display = "none";
-        console.log(img);
-    });    
+    });
+
+    //bouton précédent
+    prevButton.addEventListener("click", function prevLightbox() {
+        console.log("pécedent");
+    });
+
+    //bouton suivant
+    nextButton.addEventListener("click", function nextLightbox() {
+        console.log("suivant");
+    });
+    
 })
 
 

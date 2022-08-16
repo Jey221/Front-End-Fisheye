@@ -50,20 +50,18 @@ function mediaFactory(data) {
         //créer les espaces pour le media cliquable
         const card = document.createElement( 'div' );
         card.setAttribute("class","cardMedia");
-        //card.onclick = displayLightbox();
         article.appendChild(card);
 
         //intégrer le media
 
         let articleMedia;
-
         if (data.hasOwnProperty('image')) {
             const pictureName = data.image;
             const titlePicture = data.title;
             articleMedia = document.createElement( 'img' );
             articleMedia.setAttribute("src", `assets/picture/${idPage}/${pictureName}`);
             card.appendChild(articleMedia);
-            articleMedia.setAttribute("class", "medias");
+            articleMedia.setAttribute("class", "medias image");
             articleMedia.setAttribute("alt", "photo de " + titlePicture );
         }else if (data.hasOwnProperty('video')) {
             const videoName = data.video;
@@ -71,7 +69,7 @@ function mediaFactory(data) {
             articleMedia = document.createElement('video')
             articleMedia.setAttribute("src", `assets/picture/${idPage}/${videoName}`);
             card.appendChild(articleMedia);
-            articleMedia.setAttribute("class", "medias");
+            articleMedia.setAttribute("class", "medias video");
             articleMedia.setAttribute("alt", "video de " + titlePicture );
         };
 

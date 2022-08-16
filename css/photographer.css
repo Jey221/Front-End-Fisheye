@@ -219,6 +219,9 @@ form input , form textarea {
 #mediaLightbox img {
     max-height: 700px;
 }
+.videoLightbox {
+    width: 100%;
+}
 #closeLightbox img {
     position: absolute;
     top: 25px;
