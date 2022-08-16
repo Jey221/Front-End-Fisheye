@@ -17,9 +17,6 @@ const mediaLightbox = document.getElementById("mediaLightbox");
 const infoLightbox = document.getElementById("infoMediaLightbox")
 const pInfo = document.createElement( 'p' );
 
-const data2 = data.tabMedia
-const data3 = data2.title
-console.log(data3);
 let media;
 
 //fonction pour l'utilisation de la lightbox
@@ -28,8 +25,8 @@ Array.prototype.map.call(gallery, (b) => {
     b.addEventListener("click", function displayLightbox() {
         lightbox.style.display = "block";
         //récupération de la cible
+        const dataLightbox = data.tabMedia
         const target = [b];
-        console.log(target[0].alt);
 
         //mise en place du titre en fonction de la cible
         pInfo.textContent = target[0].alt;
@@ -40,16 +37,16 @@ Array.prototype.map.call(gallery, (b) => {
             media = document.createElement( 'img' );
             media.classList.add('imageLightbox')
         	media.setAttribute("src", target[0].src );
-        	media.setAttribute("alt", target[0].alt );
         	mediaLightbox.appendChild(media);
+            console.log(target[0]);
 
         }else{
             //Si Video
-            console.log(target[0].alt);
             media = document.createElement( 'video' );
             media.classList.add('videoLightbox')
-        	media.setAttribute("src", target[0].src );
-            media.setAttribute("alt", target[0].alt );
+        	media.setAttribute("src", target[0].src );//provisoir car fixe sur l'élément [0] de l'Array tabMedia
+            pInfo.textContent = dataLightbox[0].title;//provisoir car fixe sur l'élément [0] de l'Array tabMedia
+
             media.controls = true;
         	mediaLightbox.appendChild(media);
         };
@@ -75,37 +72,6 @@ Array.prototype.map.call(gallery, (b) => {
 
 
 
-/*
-
-
-
-function closeLightbox() {
-    const lightbox = document.getElementById("template_lightbox");
-    lightbox.style.display = "none";
+/**
 }
-getMediaPhotographer ();
-console.log(getMediaPhotographer ());
-export {closeLightbox}
-
-
-document.getElementsByClassName("cardMedia").addEventListener("click",() => {
-    if (idPage=243) {    
-        console.log("hello");
-    }
-    return console.log("bye");
-
-});
-
-
-export function closeLightbox() {
-    const modal2 = document.querySelector(".modal_lightbox");
-	modal2.style.display = "none";
-}
-
-export function displayLightbox() {
-    const modal = document.querySelector(".modal_lightbox");
-    console.log(modal);
-	modal.style.display = "block";
-}
-
 */
