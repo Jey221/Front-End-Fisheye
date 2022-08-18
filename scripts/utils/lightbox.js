@@ -1,10 +1,10 @@
 //import des fonctions
-import {getMediaPhotographer} from '../factories/media.js'
+import {getMediaPhotographer,displayDataMedia} from '../factories/media.js'
+
 
 //récupération des datas
 const promise = getMediaPhotographer();
 const data = await promise.catch(() => false);
-
 
 
 //création des variables pour la lightbox
@@ -17,15 +17,18 @@ const mediaLightbox = document.getElementById("mediaLightbox");
 const infoLightbox = document.getElementById("infoMediaLightbox")
 const pInfo = document.createElement( 'p' );
 
-let media;
+const dataLightbox = data.tabMedia
 
+const mdr = dataLightbox.shift();
+
+let media;
+ 
 //fonction pour l'utilisation de la lightbox
 Array.prototype.map.call(gallery, (b) => {
     //ouverture de la lightbox
     b.addEventListener("click", function displayLightbox() {
         lightbox.style.display = "block";
         //récupération de la cible
-        const dataLightbox = data.tabMedia
         const target = [b];
 
         //mise en place du titre en fonction de la cible
@@ -38,15 +41,12 @@ Array.prototype.map.call(gallery, (b) => {
             media.classList.add('imageLightbox')
         	media.setAttribute("src", target[0].src );
         	mediaLightbox.appendChild(media);
-            console.log(target[0]);
-
         }else{
             //Si Video
             media = document.createElement( 'video' );
             media.classList.add('videoLightbox')
         	media.setAttribute("src", target[0].src );//provisoir car fixe sur l'élément [0] de l'Array tabMedia
             pInfo.textContent = dataLightbox[0].title;//provisoir car fixe sur l'élément [0] de l'Array tabMedia
-
             media.controls = true;
         	mediaLightbox.appendChild(media);
         };
@@ -69,9 +69,6 @@ Array.prototype.map.call(gallery, (b) => {
     
 })
 
-
-
-
 /**
-}
+
 */

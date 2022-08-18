@@ -26,7 +26,6 @@ async function displayDataMedia(tabMedia) {
         gallery.appendChild(userCardDOM);
     });
 };
-
 async function init2() {
     // Récupère les datas des photographes
     const { tabMedia } = await getMediaPhotographer();
@@ -91,6 +90,5 @@ function mediaFactory(data) {
 };
 
 mediaFactory();
-
 
 export {getMediaPhotographer,displayDataMedia,init2,mediaFactory}
