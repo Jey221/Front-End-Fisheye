@@ -180,8 +180,9 @@ form input , form textarea {
 }
 
 /****************************LIGHTBOX*************/
-.modal_lightbox {
-    display: none;
+.lightbox {
+    display: flex;
+    align-items: center;
     justify-content: center;
     position: fixed;
     width: 100%;
@@ -216,17 +217,17 @@ form input , form textarea {
     display: flex;
     justify-content: center; 
 }
-.imageLightbox {
+#mediaLightbox img {
     max-height: 700px;
     border-radius: 2%
 }
-.videoLightbox {
+#mediaLightbox video {
     width: 100%;
     border-radius: 2%
 }
 #closeLightbox img {
-    position: absolute;
-    top: 25px;
+    position: fixed;
+    top: 20px;
     right: 25px;
     font-size: 20px;
     cursor: pointer;
@@ -240,4 +241,9 @@ form input , form textarea {
 }
 .arrow.next {
     right: 0px;
+}
+.lightbox__loader {
+    background: url(../assets/icons/loader.svg) center center no-repeat;
+    width: 38px;
+    height: 38px;
 }

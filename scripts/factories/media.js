@@ -48,26 +48,29 @@ function mediaFactory(data) {
 
         //créer les espaces pour le media cliquable
         const card = document.createElement( 'div' );
+        const links = document.createElement( 'a' );
+        const pictureName = data.image;
+        const videoName = data.video;
         card.setAttribute("class","cardMedia");
+        links.setAttribute("href",`assets/picture/${idPage}/${videoName || pictureName}`)
         article.appendChild(card);
+        card.appendChild(links)
 
         //intégrer le media
 
         let articleMedia;
         if (data.hasOwnProperty('image')) {
-            const pictureName = data.image;
             const titlePicture = data.title;
             articleMedia = document.createElement( 'img' );
             articleMedia.setAttribute("src", `assets/picture/${idPage}/${pictureName}`);
-            card.appendChild(articleMedia);
+            links.appendChild(articleMedia);
             articleMedia.setAttribute("class", "medias image");
             articleMedia.setAttribute("alt", titlePicture );
         }else if (data.hasOwnProperty('video')) {
-            const videoName = data.video;
             const titlePicture = data.title;
             articleMedia = document.createElement('video')
             articleMedia.setAttribute("src", `assets/picture/${idPage}/${videoName}`);
-            card.appendChild(articleMedia);
+            links.appendChild(articleMedia);
             articleMedia.setAttribute("class", "medias video");
             articleMedia.setAttribute("alt", titlePicture );
         };
