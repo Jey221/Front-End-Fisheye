@@ -65,6 +65,7 @@ function mediaFactory(data) {
             articleMedia.setAttribute("src", `assets/picture/${idPage}/${pictureName}`);
             links.appendChild(articleMedia);
             articleMedia.setAttribute("class", "medias image");
+            articleMedia.setAttribute("id", id);
             articleMedia.setAttribute("alt", titlePicture );
         }else if (data.hasOwnProperty('video')) {
             const titlePicture = data.title;
@@ -73,6 +74,7 @@ function mediaFactory(data) {
             links.appendChild(articleMedia);
             articleMedia.setAttribute("class", "medias video");
             articleMedia.setAttribute("alt", titlePicture );
+            articleMedia.setAttribute("id", id);
         };
 
         //création du footer
@@ -84,6 +86,7 @@ function mediaFactory(data) {
         const span = document.createElement( 'span' );
         article.appendChild(span);
         span.setAttribute("class","article_media_title");
+        span.setAttribute("id",data.video || data.image );
         span.textContent = data.title;
 
         return (article);

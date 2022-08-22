@@ -2,22 +2,20 @@
 import {getMediaPhotographer,displayDataMedia, mediaFactory} from '../factories/media.js'
 
 //récupération des datas
+const idPage = window.location.search.split("?id=").join("");
 const promise = getMediaPhotographer();
 const data = await promise.catch(() => false);
 
-
+//création de la classe lightbox
 class lightbox {
 
     static init () {
         const links = Array.from(document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]'))
         const gallery = links.map(link => link.getAttribute('href'))
-        //const lol = links.map(link => link.getAttribute('href'))
-        console.log(gallery);
         links.forEach(link => link.addEventListener('click', e => {
             e.preventDefault()
             new lightbox(e.currentTarget.getAttribute('href'),gallery)
         }))
-
     };
     
     //url de l'image cliqué
@@ -29,10 +27,12 @@ class lightbox {
         this.onKeyUp = this.onKeyUp.bind(this)
         document.addEventListener('keyup', this.onKeyUp)
     };
-
+    //chargement de l'image
     loadImage (url) {
         this.url = null
         const containerMedia = this.element.querySelector('#mediaLightbox')
+        const spanInfo = this.element.querySelector('#infoMediaLightbox')
+        let target = url.split(`assets/picture/${idPage}/`).join("")
         let typeImage = url.includes('.jpg')
         containerMedia.innerHTML = '';
         let media;
@@ -43,7 +43,7 @@ class lightbox {
             media.setAttribute("src", url );
             containerMedia.appendChild(media);
             this.url = url;
-
+            spanInfo.textContent = document.getElementById(target).innerHTML
         }else{
             //Si Video
             media = document.createElement( 'video' );
@@ -52,6 +52,8 @@ class lightbox {
             media.controls = true;
             containerMedia.appendChild(media)
             this.url = url;
+            spanInfo.textContent = document.getElementById(target).innerHTML
+
         };
     };
     //création des fonctions claviers
@@ -65,7 +67,7 @@ class lightbox {
         }
 
     }
-
+    //fonction de fermeture
     close(e) {
         e.preventDefault()
         this.element.classList.add('fadeOut')
@@ -74,7 +76,7 @@ class lightbox {
         }, 500)
         document.removeEventListener('keyup', this.onKeyUp)
     }
-
+    //fonction suivante
     next (e) {
         e.preventDefault()
         let i = this.gallery.findIndex(i => i === this.url)// définition de la position du click
@@ -83,7 +85,7 @@ class lightbox {
         }
         this.loadImage(this.gallery[i + 1])
     }
-
+    //fonction précédente
     prev (e) {
         e.preventDefault()
         let i = this.gallery.findIndex(i => i === this.url)// définition de la position du click
@@ -92,7 +94,7 @@ class lightbox {
         }
         this.loadImage(this.gallery[i - 1])
     }
-
+    //crétion des elements HTML pour la Lightbox
     buildDOM (url) {
         const dom = document.createElement('div')
         dom.classList.add('lightbox')
