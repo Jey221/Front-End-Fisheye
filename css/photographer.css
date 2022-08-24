@@ -97,6 +97,36 @@ article {
     font-weight: bold;
     margin-top: 5%;
 }
+/*****************************likes**************************************/
+.footerMedias {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1%;
+}
+.likeZone {
+    display: flex;
+    align-items: center;
+}
+
+.heartZone {
+    width: 25px;
+    height: 20px;
+}
+
+.likeLabel {
+    cursor: pointer;
+}
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"], .likeLabel .checked {
+    color: red;
+}
+input[type="checkbox"]:checked ~ .unchecked {
+    color: blue;
+}
 
 /***********************FORMULAIRE DE CONTACT***************************/
 #contact_modal {
@@ -241,9 +271,4 @@ form input , form textarea {
 }
 .arrow.next {
     right: 0px;
-}
-.lightbox__loader {
-    background: url(../assets/icons/loader.svg) center center no-repeat;
-    width: 38px;
-    height: 38px;
 }

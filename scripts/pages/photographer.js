@@ -1,7 +1,7 @@
 //Mettre le code JavaScript lié à la page photographer.html
 //import des données
 import {getMediaPhotographer} from '../factories/media.js'
-//import {closeLightbox} from '../utils/lightbox.js'
+
 //création d'une constante correspondante a l'URL
 const idPage = window.location.search.split("?id=").join("");
 
@@ -121,12 +121,12 @@ function infoFactory(data) {
         encartTarif.appendChild(spanLike);
         encartTarif.appendChild(spanPrix);
         spanPrix.textContent = data.price + "€/jour";
+
         
         //intégrer nom du photographe dans le modal
         const titreModal = document.getElementById("titreModalContact");
         titreModal.textContent = "Contactez-moi " + this.name;
-
-
+ 
 
         return (infoPhotographe);
     };
@@ -137,6 +137,3 @@ function infoFactory(data) {
 infoFactory();
 
 getMediaPhotographer();
-//displayDataMedia();
-//init2();
-//mediaFactory();

@@ -30,8 +30,34 @@ async function init2() {
     // Récupère les datas des photographes
     const { tabMedia } = await getMediaPhotographer();
     displayDataMedia(tabMedia);
+    listenForLikes(tabMedia);
+
 };
 init2();
+
+//mise en place d'une fonction pour incrémentation et décrémentation des likes
+
+const listenForLikes = (tabMedia) => {
+    const likes = document.querySelectorAll(".likeLabel");
+    console.log(tabMedia);
+    likes.forEach(like => {
+        like.addEventListener("click", (event) => {
+            event.target.classList.toggle('unchecked')
+            event.target.classList.toggle('checked')
+            const id = like.getAttribute("for")
+            if (event.target.classList.contains('checked')) {
+                console.log(document.getElementById(`likeCount_${id}`));
+                console.log(id);
+                document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)+1;
+
+            } else {
+                console.log(document.querySelector('.unchecked'));
+                document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)-1;
+
+            }
+        })
+    })
+}
 
 
 //mise en place d'une fonction pour les différentes info sur page Photographer
@@ -57,7 +83,6 @@ function mediaFactory(data) {
         card.appendChild(links)
 
         //intégrer le media
-
         let articleMedia;
         if (data.hasOwnProperty('image')) {
             const titlePicture = data.title;
@@ -83,18 +108,48 @@ function mediaFactory(data) {
         article.appendChild(footer);
 
         //intégrer les infos du footer
+        //nom du media
         const span = document.createElement( 'span' );
-        article.appendChild(span);
+        footer.appendChild(span);
         span.setAttribute("class","article_media_title");
         span.setAttribute("id",data.video || data.image );
         span.textContent = data.title;
 
+        //nombre de like sur media
+        const likeZone = document.createElement( 'div' );
+        footer.appendChild(likeZone);
+        likeZone.setAttribute("class", "likeZone");
+
+        const likeCount = document.createElement( 'span' );
+        likeZone.appendChild(likeCount);
+        likeCount.setAttribute("class", "likeCount");
+        likeCount.setAttribute("id", `likeCount_${id}`);
+        likeCount.innerText = data.likes;
+
+        const likeLabel = document.createElement( 'label' );
+        likeZone.appendChild(likeLabel);
+        likeLabel.setAttribute("for", id );
+        likeLabel.classList.add('likeLabel');
+
+        const likeZoneInput = document.createElement( 'input' );
+        likeLabel.appendChild(likeZoneInput);
+        likeZoneInput.setAttribute("id", `like_${id}` );
+        likeZoneInput.setAttribute("aria-label", "like checkbox");
+        likeZoneInput.setAttribute("type", "checkbox");
+
+        const heartCheck = document.createElement( 'i' ) 
+        likeLabel.appendChild(heartCheck);
+        heartCheck.setAttribute("class", "fa-solid fa-heart unchecked");
+
+
         return (article);
     };
-    return { getPhotographersMedias };
+    return { getPhotographersMedias};
 
+    
 };
 
 mediaFactory();
+
 
 export {getMediaPhotographer,displayDataMedia,init2,mediaFactory}
