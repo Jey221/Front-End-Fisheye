@@ -78,7 +78,7 @@ article {
     justify-content: center;
     gap: 5%;
 }
-.encartTarif {
+.encart {
     position: fixed;
     z-index: 0,5;
     bottom: 0px;
@@ -92,7 +92,7 @@ article {
     flex-wrap: nowrap;
     justify-content: space-around;
 }
-.encartTarif span {
+.encart span {
     font-size: 27px;
     font-weight: bold;
     margin-top: 5%;

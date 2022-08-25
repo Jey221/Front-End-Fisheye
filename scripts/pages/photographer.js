@@ -113,20 +113,38 @@ function infoFactory(data) {
 
         //intégrer encart tarif & total like
         const gallery = document.getElementById('gallery');
-        const encartTarif = document.createElement( "aside" );
-        gallery.appendChild(encartTarif);
-        encartTarif.setAttribute("class","encartTarif");
+        const encart = document.createElement( "aside" );
+        gallery.appendChild(encart);
+        encart.setAttribute("class","encart");
         const spanPrix = document.createElement( 'span' );
         const spanLike = document.createElement( 'span' );
-        encartTarif.appendChild(spanLike);
-        encartTarif.appendChild(spanPrix);
+        const heart = document.createElement( 'i' );
+        heart.setAttribute("class", "fa-solid fa-heart");
+        spanLike.setAttribute("id", "likeEncart");
+        encart.appendChild(spanLike);
+        encart.appendChild(heart);
+        encart.appendChild(spanPrix);
         spanPrix.textContent = data.price + "€/jour";
-
         
+        //calcul de la somme des likes sur la gallerie
+        var allLikeSpans = document.querySelectorAll('.likeCount');
+        var arrayLike = [];
+        for (var i = 0; i < allLikeSpans.length; i++) {
+            arrayLike.push(allLikeSpans[i].innerHTML);
+        }
+        var numberSpans = []
+        for (var i = 0; i < arrayLike.length; i++) {
+            numberSpans.push(parseInt(arrayLike[i]));
+        }
+        let sum = 0;
+        for (let i = 0; i <numberSpans.length; i++) {
+            sum += numberSpans[i];
+        }
+        spanLike.textContent = sum ;
+
         //intégrer nom du photographe dans le modal
         const titreModal = document.getElementById("titreModalContact");
         titreModal.textContent = "Contactez-moi " + this.name;
- 
 
         return (infoPhotographe);
     };

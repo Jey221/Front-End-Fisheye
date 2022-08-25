@@ -30,35 +30,30 @@ async function init2() {
     // Récupère les datas des photographes
     const { tabMedia } = await getMediaPhotographer();
     displayDataMedia(tabMedia);
-    listenForLikes(tabMedia);
-
+    listenForLikes();
 };
+
 init2();
 
 //mise en place d'une fonction pour incrémentation et décrémentation des likes
-
-const listenForLikes = (tabMedia) => {
+const listenForLikes = () => {    
     const likes = document.querySelectorAll(".likeLabel");
-    console.log(tabMedia);
     likes.forEach(like => {
-        like.addEventListener("click", (event) => {
+        like.addEventListener("click", (event) => {            
             event.target.classList.toggle('unchecked')
             event.target.classList.toggle('checked')
-            const id = like.getAttribute("for")
+            const id = like.getAttribute("for")        
             if (event.target.classList.contains('checked')) {
-                console.log(document.getElementById(`likeCount_${id}`));
-                console.log(id);
                 document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)+1;
-
+                const likeEncart = document.getElementById("likeEncart");
+                likeEncart.innerHTML = parseInt(likeEncart.innerHTML)+1;
             } else {
-                console.log(document.querySelector('.unchecked'));
                 document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)-1;
-
+                likeEncart.innerHTML = parseInt(likeEncart.innerHTML)-1;
             }
         })
     })
 }
-
 
 //mise en place d'une fonction pour les différentes info sur page Photographer
 function mediaFactory(data) {  
@@ -140,7 +135,7 @@ function mediaFactory(data) {
         const heartCheck = document.createElement( 'i' ) 
         likeLabel.appendChild(heartCheck);
         heartCheck.setAttribute("class", "fa-solid fa-heart unchecked");
-
+    
 
         return (article);
     };
@@ -153,3 +148,6 @@ mediaFactory();
 
 
 export {getMediaPhotographer,displayDataMedia,init2,mediaFactory}
+
+/**
+ */
