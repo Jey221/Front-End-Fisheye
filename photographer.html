@@ -17,7 +17,16 @@
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </section>
       <div id="sortArea">
-        <!--section injecté par code javascript-->
+        <label id="listboxLabel" for="listboxContainer">Trier par
+          <div id="listboxContainer" role="button" aria-haspopup="listbox" tabindex="0" aria-expanded="false">
+            <span id="listboxOptionActuelle">Popularité</span>
+            <div role="listbox" id="listbox" tabindex="-1" >
+              <div class="listboxOption" role="option" tabindex="-1" id="listboxPopularity">Popularité</div>
+              <div class="listboxOption" role="option" tabindex="-1" id="listboxDate">Date</div>
+              <div class="listboxOption" role="option" tabindex="-1" id="listboxTitre">Titre</div>
+            </div>
+          </div>
+        </label>
       </div>
       <section id="gallery" class="galleryMedia">
         <!--section injecté par code javascript-->

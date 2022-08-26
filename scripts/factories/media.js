@@ -1,6 +1,4 @@
 //mise en place des fonction pour les media sur la page photographers
-//import {displayLightbox} from '../utils/lightbox.js'
-
 //création d'une constante correspondante a l'URL
 const idPage = window.location.search.split("?id=").join("");
 
@@ -31,8 +29,8 @@ async function init2() {
     const { tabMedia } = await getMediaPhotographer();
     displayDataMedia(tabMedia);
     listenForLikes();
+    openCloseListbox(tabMedia);
 };
-
 init2();
 
 //mise en place d'une fonction pour incrémentation et décrémentation des likes
@@ -55,6 +53,64 @@ const listenForLikes = () => {
     })
 }
 
+
+const openCloseListbox = (tabMedia) => {
+    const listboxContainer = document.getElementById('listboxContainer');
+    const listbox = document.getElementById('listbox');
+    let listboxOptionActuelle = document.getElementById('listboxOptionActuelle');
+
+    listboxContainer.addEventListener('click', () => {
+        if(window.getComputedStyle(listbox).display === "none") {
+            listbox.style.setProperty('display', 'block')
+            listboxOptionActuelle.style.setProperty('display', 'none')
+            clickListbox(tabMedia)
+        }else{
+            listbox.style.setProperty('display', 'none')
+            listboxOptionActuelle.style.setProperty('display', 'block')
+        }
+    });
+};
+
+const clickListbox = (tabMedia) => {
+    const listboxOption = document.querySelectorAll(".listboxOption")
+    listboxOption.forEach((listboxOption) => {
+        listboxOption.addEventListener('click', (e) => {
+            listboxOptionActuelle.innerHTML = e.path[0].innerHTML
+            if (e.path[0].innerHTML === "Popularité") {
+                console.log("Popularité");
+                popularitySort(tabMedia);
+            }else if (e.path[0].innerHTML === "Date") {
+                console.log("Date");
+                dateSort(tabMedia);
+            }else{
+                console.log("Titre");
+                titleSort(tabMedia);
+            }
+            console.log(e);
+        })
+    })
+
+}
+
+const popularitySort = (tabMedia) => {
+    console.log(tabMedia);
+    console.log(tabMedia.sort(function (a,b){ return b.likes - a.likes }));
+    console.log(gallery);
+    console.log("hello");
+};
+const dateSort = (tabMedia) => {
+    //console.log(tabMedia);
+    //console.log(tabMedia.sort(function (a,b){ return b.likes - a.likes }));
+    //console.log(gallery);
+    console.log("bye");
+};
+const titleSort = (tabMedia) => {
+    //console.log(tabMedia);
+    //console.log(tabMedia.sort(function (a,b){ return b.likes - a.likes }));
+    //console.log(gallery);
+    console.log("cool");
+};
+
 //mise en place d'une fonction pour les différentes info sur page Photographer
 function mediaFactory(data) {  
     
@@ -66,7 +122,6 @@ function mediaFactory(data) {
         const article = document.createElement( 'article' );
         article.setAttribute("id",`article-${id}`);
         gallery.appendChild(article);
-
         //créer les espaces pour le media cliquable
         const card = document.createElement( 'div' );
         const links = document.createElement( 'a' );
