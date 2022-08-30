@@ -38,7 +38,6 @@ init();
 
 
 //mise en place d'une fonction pour les différentes info sur page Photographer
-
 function infoFactory(data) {  
     function getPhotographersInfos() { 
 
@@ -94,8 +93,6 @@ function infoFactory(data) {
         pTagline.classList.add('p_Tagline_Info_Photographe');
         this.tagline=data.tagline;
         pTagline.textContent = this.tagline;
-
-        //TAG LIST
         
         //créer une div pour la photo de profil du photographe
         const photoProfil = document.createElement( 'div' );
@@ -112,9 +109,9 @@ function infoFactory(data) {
 
 
         //intégrer encart tarif & total like
-        const gallery = document.getElementById('gallery');
+        const main = document.getElementById('main');
         const encart = document.createElement( "aside" );
-        gallery.appendChild(encart);
+        main.appendChild(encart);
         encart.setAttribute("class","encart");
         const spanPrix = document.createElement( 'span' );
         const spanLike = document.createElement( 'span' );

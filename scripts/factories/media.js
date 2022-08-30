@@ -11,13 +11,15 @@ async function getMediaPhotographer() {
     const tabMedia = media.filter(value => {
         if( value.photographerId == parseInt(idPage,10) ) return true;
     });
-
     return ({tabMedia: [...tabMedia]});
 };
 
 //mise en place d'une fonction pour afficher le contenu
 async function displayDataMedia(tabMedia) {    
     const gallery = document.getElementById('gallery');
+    console.log(gallery);
+    gallery.innerHTML = ""
+    console.log(gallery);
     tabMedia.forEach((tabMedia) => {
         const photographerModel = mediaFactory(tabMedia);
         const userCardDOM = photographerModel.getPhotographersMedias(tabMedia);
@@ -25,12 +27,13 @@ async function displayDataMedia(tabMedia) {
     });
 };
 
+
 async function init2() {
     // Récupère les datas des photographes
     const { tabMedia } = await getMediaPhotographer();
-    openCloseListbox(tabMedia);
     displayDataMedia(tabMedia);
     listenForLikes();
+    openCloseListbox(tabMedia);
 };
 
 init2();
@@ -55,7 +58,7 @@ const listenForLikes = () => {
     })
 }
 
-
+//fonction pour l'ouverture de la listbox pour le tri
 const openCloseListbox = (tabMedia) => {
     const listboxContainer = document.getElementById('listboxContainer');
     const listbox = document.getElementById('listbox');
@@ -71,11 +74,10 @@ const openCloseListbox = (tabMedia) => {
             listbox.style.setProperty('display', 'none')
             listboxOptionActuelle.style.setProperty('display', 'block')
             iconActuel.style.setProperty('display', 'block')
-
         }
     });
 };
-
+//option de la listbox
 const clickListbox = (tabMedia) => {
     const listboxOption = document.querySelectorAll(".listboxOption")
     listboxOption.forEach((listboxOption) => {
@@ -84,21 +86,18 @@ const clickListbox = (tabMedia) => {
             if (e.path[0].innerHTML === "Popularité") {
                 console.log("Popularité");
                 popularitySort(tabMedia)
-                displayDataMedia(tabMedia);
             }else if (e.path[0].innerHTML === "Date") {
                 console.log("Date");
                 dateSort(tabMedia)
-                displayDataMedia(tabMedia); 
             }else{
                 console.log("Titre");
                 titleSort(tabMedia)
-                displayDataMedia(tabMedia); 
             }
+            displayDataMedia(tabMedia);
         })
     })
 }
- 
- const popularitySort = (tabMedia) => {
+const popularitySort = (tabMedia) => {
     tabMedia.sort(function (a,b){ return b.likes - a.likes })  
     console.log("popu");
 };
@@ -118,7 +117,6 @@ const titleSort = (tabMedia) => {
 function mediaFactory(data) {  
     
     function getPhotographersMedias() { 
-
         //créer les espaces pour les medias
         const id = data.id
         const gallery = document.getElementById('gallery');
@@ -168,29 +166,34 @@ function mediaFactory(data) {
         span.setAttribute("id",data.video || data.image );
         span.textContent = data.title;
 
-        //nombre de like sur media
+        //like sur media
+        //délimitation de la zone de like 
         const likeZone = document.createElement( 'div' );
         footer.appendChild(likeZone);
         likeZone.setAttribute("class", "likeZone");
 
+        //compteur de like
         const likeCount = document.createElement( 'span' );
         likeZone.appendChild(likeCount);
         likeCount.setAttribute("class", "likeCount");
         likeCount.setAttribute("id", `likeCount_${id}`);
         likeCount.innerText = data.likes;
 
+        //création d'un label like 
         const likeLabel = document.createElement( 'label' );
         likeZone.appendChild(likeLabel);
         likeLabel.setAttribute("for", id );
         likeLabel.classList.add('likeLabel');
 
+        //création d'un Input like   
         const likeZoneInput = document.createElement( 'input' );
         likeLabel.appendChild(likeZoneInput);
         likeZoneInput.setAttribute("id", `like_${id}` );
         likeZoneInput.setAttribute("aria-label", "like checkbox");
         likeZoneInput.setAttribute("type", "checkbox");
 
-        const heartCheck = document.createElement( 'i' ) 
+        //mise en place d'un icon coeur   
+        const heartCheck = document.createElement( 'i' );
         likeLabel.appendChild(heartCheck);
         heartCheck.setAttribute("class", "fa-solid fa-heart unchecked");
     
@@ -204,7 +207,4 @@ function mediaFactory(data) {
 mediaFactory();
 
 
-export {getMediaPhotographer,displayDataMedia,init2,mediaFactory}
-
-/**
- */
+export {getMediaPhotographer,displayDataMedia,init2,mediaFactory};

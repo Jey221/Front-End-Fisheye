@@ -8,12 +8,15 @@ const data = await promise.catch(() => false);
 
 //création de la classe lightbox
 class lightbox {
-
     static init () {
         const links = Array.from(document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]'))
+        console.log(links);
         const gallery = links.map(link => link.getAttribute('href'))
+        console.log(gallery);
+        console.log(links);
         links.forEach(link => link.addEventListener('click', e => {
             e.preventDefault()
+            console.log(gallery);
             new lightbox(e.currentTarget.getAttribute('href'),gallery)
         }))
     };
