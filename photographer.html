@@ -4,7 +4,7 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
-    <script src="https://kit.fontawesome.com/9468c33ba3.js" crossorigin="anonymous"></script>    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/9468c33ba3.js" crossorigin="anonymous"></script>    
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -19,11 +19,14 @@
       <div id="sortArea">
         <label id="listboxLabel" for="listboxContainer">Trier par
           <div id="listboxContainer" role="button" aria-haspopup="listbox" tabindex="0" aria-expanded="false">
-            <span id="listboxOptionActuelle">Popularité</span>
+            <span id="listboxOptionActuelle">Popularité</span><span id="listboxOptionActuelleIcon"><i class="fa-solid fa-angle-down"></i></span>
             <div role="listbox" id="listbox" tabindex="-1" >
-              <div class="listboxOption" role="option" tabindex="-1" id="listboxPopularity">Popularité</div>
-              <div class="listboxOption" role="option" tabindex="-1" id="listboxDate">Date</div>
-              <div class="listboxOption" role="option" tabindex="-1" id="listboxTitre">Titre</div>
+              <span><i class="fa-solid fa-angle-up"></i></span>
+              <div id="options">
+                <div class="listboxOption" role="option" tabindex="-1" id="listboxPopularity">Popularité</div>
+                <div class="listboxOption" role="option" tabindex="-1" id="listboxDate">Date</div>
+                <div class="listboxOption" role="option" tabindex="-1" id="listboxTitre">Titre</div>
+              </div>
             </div>
           </div>
         </label>

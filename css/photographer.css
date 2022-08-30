@@ -1,9 +1,13 @@
+/***********************PROFIL DU PHOTOGRAPHE***************************/
 .photograph-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
+    height: 313px;
+    margin: 0 55px;
+    gap: 4%;
 }
-
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -15,41 +19,41 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 5%;
 }
 .contact_button:hover {
     background-color: #D3573C;
     color: black;
 }
-
-.photograph-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
 .nomPhotographe h2 {
     color: #D3573C;
-    font-size: 36px;
+    font-size: 64px;
+    font-weight: 400;
     margin: 0%;
     white-space: nowrap;
 }
 .villePhotographe p {
     color: #901C1C;
-    font-size: 20px;
+    font-size: 24px;
     margin: 0%;
+    margin-top: 6%;
 }
 .taglinePhotographe p {
-    color: black;
-    font-size: 16px;
+    color: #525252;
+    font-size: 18px;
     margin: 0%;
+    margin-top: 5%;
 }
 .photo_profil_info_photographe {
     height: 200px;
     width: 200px;
     border-radius: 50%;
+    object-fit: cover;
 }
+/***********************GALERIE PHOTO***************************/
 .medias {
     height: 300px;
-    width: 300px;
+    width: 350px;
     object-fit: cover;
     border-radius: 5px;
     object-position: center top;
@@ -66,9 +70,6 @@
 article {
     margin-bottom: 2%;
 }
-.footerMedias {
-    margin-top: 5%;
-}
 #gallery {
     padding: 2%;
     display: flex;
@@ -78,11 +79,11 @@ article {
     justify-content: center;
     gap: 5%;
 }
+/***********************ENCART LIKE+PRIX***************************/
 .encart {
     position: fixed;
-    z-index: 0,5;
-    bottom: 0px;
-    right: 60px;
+    bottom: -3px;
+    right: 50px;
     border-radius: 5px 5px 0px 0px;
     background-color: #D3573C;
     width: 300px;
@@ -91,45 +92,51 @@ article {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-around;
+    align-items: center;
 }
 .encart span {
     font-size: 27px;
     font-weight: bold;
-    margin-top: 5%;
 }
-/*****************************likes**************************************/
+.encart i {
+    font-size: 24px;
+    position: absolute;
+    left: 30%;
+}
+/***********************FOOTER DES MEDIAS DANS LA GALERIE***************************/
 .footerMedias {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1%;
+    margin-top: 5%;
+    font-size: 19px;
+    color:#901C1C;
+}
+.article_media_title {
+    font-weight: 400;
 }
 .likeZone {
     display: flex;
     align-items: center;
 }
-
 .heartZone {
     width: 25px;
     height: 20px;
 }
-
 .likeLabel {
     cursor: pointer;
 }
 input[type="checkbox"] {
     display: none;
 }
-
 input[type="checkbox"], .likeLabel .checked {
-    color: red;
-}
-input[type="checkbox"]:checked ~ .unchecked {
-    color: blue;
+    color: #DB8876;
+    ;
 }
 /***********************BOUTON DE TRI (LISTBOX)***************************/
 #sortArea {
     height: 80px;
+    margin: 2% 0 0 4%;
     padding: 0 0 0 20px;
 }
 #listboxLabel {
@@ -138,25 +145,28 @@ input[type="checkbox"]:checked ~ .unchecked {
     justify-content: space-between;
     align-items: center;
     margin: 0 0 30px 0;
-    position: absolute; 
+    position: absolute;
 }
 #listboxContainer {
     background-color: #901C1C;
     position: absolute;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     color: white;
     cursor: pointer;
-    padding: 0 10px 0 0;
+    padding: 0 10px 0 10px;
     border-radius: 5px;
     min-height: 50px;
     font-weight: 500;
     width: 150px;
     left: 80px;
     z-index: 1;
+    top: -9px;
 }
 #listboxContainer:hover > #listboxOptionActuelle {
     color: black;
+    background-color: #D3573C;
 }
 #listboxContainer:focus {
     outline: 2px solid #D3573C
@@ -169,16 +179,30 @@ input[type="checkbox"]:checked ~ .unchecked {
 }
 #listbox {
     display: none;
+    flex-direction: row-reverse;
+    align-items: baseline;
+    width: 100%;
+    justify-content: space-between;
+}
+#options {
+    width: 100%;
+}
+#listboxDate {
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
 }
 .listboxOption {
     padding: 10px 1ch 10px 0;
-    border-right: 1px solid white;
 }
-.listboxOption:focus {
-    outline: none;
+.listboxOption:hover {
     background-color: #D3573C;
     color: black;
 }
+.listboxOption:nth-child(1) {
+    border-radius: 5px 0 0 0;
+}
+
+
 
 /***********************FORMULAIRE DE CONTACT***************************/
 #contact_modal {
@@ -211,32 +235,27 @@ input[type="checkbox"]:checked ~ .unchecked {
     margin-bottom: 10%;
     align-items: flex-start;
 }
-
 .modal header img {
     cursor: pointer;
     width: 35px;
     padding-top: 2%;
 }
-
 .modal header h2 {
     font-size: 50px;
     font-weight: normal;
     text-align: start;
     margin-top: 0%;
 }
-
 form {
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
 }
-
 form label {
     color: #312E2E;
     font-size: 36px;
 }
-
 form div {
     display: flex;
     flex-direction: column;
@@ -244,24 +263,20 @@ form div {
     align-items: self-start;
     margin-bottom: 26px;
 }
-
 form input , form textarea {
     width: 100%;
     height: 68px;
     border: none;
     border-radius: 5px;
 }
-
 #message {
     resize: none;
     height: 200px;
 }
-
 .text_control.error {
     border: 2px solid #e54858;
 }
-
-/****************************LIGHTBOX*************/
+/****************************LIGHTBOX************************************/
 .lightbox {
     display: flex;
     align-items: center;
@@ -283,10 +298,9 @@ form input , form textarea {
     padding-top: 3%;
     justify-content: center;
     gap: 2%;
-
 }
 #mediaContainerZone {
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -295,12 +309,15 @@ form input , form textarea {
     display: flex;
     justify-content: center;
 }
+.containerDetail {
+    display: flex;
+}
 #mediaLightbox {
     display: flex;
     justify-content: center; 
 }
 #mediaLightbox img {
-    max-height: 700px;
+    max-height: 600px;
     border-radius: 2%
 }
 #mediaLightbox video {
@@ -313,14 +330,23 @@ form input , form textarea {
     right: 25px;
     font-size: 20px;
     cursor: pointer;
+    filter: invert(16%) sepia(45%) saturate(3396%) hue-rotate(342deg) brightness(99%) contrast(97%);
+
+}
+#infoMediaLightbox {
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
 }
 .arrow {
     cursor: pointer;
     width: 3%;
+    position: fixed;
+    filter: invert(16%) sepia(45%) saturate(3396%) hue-rotate(342deg) brightness(99%) contrast(97%);
 }
 .arrow.prev {
-    left: 0px;
+    left: 16px;
 }
 .arrow.next {
-    right: 0px;
+    right: 16px;
 }
