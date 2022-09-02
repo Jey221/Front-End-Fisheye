@@ -1,5 +1,5 @@
 //import des fonctions
-import {getMediaPhotographer,displayDataMedia, mediaFactory} from '../factories/media.js'
+import {getMediaPhotographer} from '../factories/media.js'
 
 //récupération des datas
 const idPage = window.location.search.split("?id=").join("");
@@ -10,21 +10,17 @@ const data = await promise.catch(() => false);
 class lightbox {
     static init () {
         const links = Array.from(document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]'))
-        console.log(links);
         const gallery = links.map(link => link.getAttribute('href'))
-        console.log(gallery);
-        console.log(links);
         links.forEach(link => link.addEventListener('click', e => {
             e.preventDefault()
-            console.log(gallery);
             new lightbox(e.currentTarget.getAttribute('href'),gallery)
         }))
     };
-    
     //url de l'image cliqué
     constructor (url, gallery) {
         this.element = this.buildDOM(url)
         this.gallery = gallery
+        console.log(this.gallery);
         document.body.appendChild(this.element)
         this.loadImage(url)
         this.onKeyUp = this.onKeyUp.bind(this)
@@ -56,7 +52,6 @@ class lightbox {
             containerMedia.appendChild(media)
             this.url = url;
             spanInfo.textContent = document.getElementById(target).innerHTML
-
         };
     };
     //création des fonctions claviers
@@ -68,7 +63,6 @@ class lightbox {
         } else if (e.key === 'ArrowRight'){
             this.next(e)    
         }
-
     }
     //fonction de fermeture
     close(e) {
@@ -111,8 +105,7 @@ class lightbox {
                 <div id="arrowRight" class="arrow next"><img src="assets/icons/chevron-right-solid.svg"/></div>
                 <div id="closeLightbox"><img id="closeLightbox" src="assets/icons/close2.svg" /></div>
             </div>`
-
-        //mise en place de la fonction fermer //
+        //mise en place des fonction de navigation //
         dom.querySelector('#closeLightbox').addEventListener('click', this.close.bind(this))
         dom.querySelector('#arrowLeft').addEventListener('click', this.prev.bind(this))
         dom.querySelector('#arrowRight').addEventListener('click', this.next.bind(this))

@@ -1,5 +1,5 @@
 //mise en place des fonction pour les media sur la page photographers
-//création d'une constante correspondante a l'URL
+//création d'une constante correspondante a l'id du photographe affiché
 const idPage = window.location.search.split("?id=").join("");
 
 //mise en place d'une fonction pour recupèrer infos du json
@@ -11,15 +11,15 @@ async function getMediaPhotographer() {
     const tabMedia = media.filter(value => {
         if( value.photographerId == parseInt(idPage,10) ) return true;
     });
+    popularitySort(tabMedia)//mise en place du tri populaire par défaut
+    openCloseListbox(tabMedia);//appel de la fonction de tri via l'ouverture de la listbox
     return ({tabMedia: [...tabMedia]});
 };
 
 //mise en place d'une fonction pour afficher le contenu
-async function displayDataMedia(tabMedia) {    
+async function displayDataMedia(tabMedia) {
     const gallery = document.getElementById('gallery');
-    console.log(gallery);
     gallery.innerHTML = ""
-    console.log(gallery);
     tabMedia.forEach((tabMedia) => {
         const photographerModel = mediaFactory(tabMedia);
         const userCardDOM = photographerModel.getPhotographersMedias(tabMedia);
@@ -33,14 +33,13 @@ async function init2() {
     const { tabMedia } = await getMediaPhotographer();
     displayDataMedia(tabMedia);
     listenForLikes();
-    openCloseListbox(tabMedia);
 };
-
 init2();
 
 //mise en place d'une fonction pour incrémentation et décrémentation des likes
 const listenForLikes = () => {    
     const likes = document.querySelectorAll(".likeLabel");
+    
     likes.forEach(like => {
         like.addEventListener("click", (event) => {            
             event.target.classList.toggle('unchecked');
@@ -50,13 +49,15 @@ const listenForLikes = () => {
                 document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)+1;
                 const likeEncart = document.getElementById("likeEncart");
                 likeEncart.innerHTML = parseInt(likeEncart.innerHTML)+1;
+                localStorage.setItem("like", document.getElementById(`likeCount_${id}`).innerHTML)
+                console.log(localStorage.getItem("like"));
             } else {
                 document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)-1;
                 likeEncart.innerHTML = parseInt(likeEncart.innerHTML)-1;
-            }
-        })
-    })
-}
+            };
+        });
+    });
+};
 
 //fonction pour l'ouverture de la listbox pour le tri
 const openCloseListbox = (tabMedia) => {
@@ -70,6 +71,7 @@ const openCloseListbox = (tabMedia) => {
             listboxOptionActuelle.style.setProperty('display', 'none')
             iconActuel.style.setProperty('display', 'none')
             clickListbox(tabMedia)
+            console.log(localStorage.getItem("like"));
         }else{
             listbox.style.setProperty('display', 'none')
             listboxOptionActuelle.style.setProperty('display', 'block')
@@ -84,32 +86,29 @@ const clickListbox = (tabMedia) => {
         listboxOption.addEventListener('click', (e) => {
             listboxOptionActuelle.innerHTML = e.path[0].innerHTML
             if (e.path[0].innerHTML === "Popularité") {
-                console.log("Popularité");
                 popularitySort(tabMedia)
+                console.log(localStorage.getItem("like"));
             }else if (e.path[0].innerHTML === "Date") {
-                console.log("Date");
                 dateSort(tabMedia)
             }else{
-                console.log("Titre");
                 titleSort(tabMedia)
             }
             displayDataMedia(tabMedia);
+            listenForLikes();
         })
     })
 }
+//fonction de tri par Popularité (+ de like à - de like )
 const popularitySort = (tabMedia) => {
     tabMedia.sort(function (a,b){ return b.likes - a.likes })  
-    console.log("popu");
 };
+//fonction de tri par date (+ ancien au + récent)
 const dateSort = (tabMedia) => {
     tabMedia.sort(function (a,b){ return new Date(a.date) - new Date(b.date) });
-    console.log(tabMedia);
-    console.log("date");
 };
+//fonction de tri par titre (ordre alphabétique)
 const titleSort = (tabMedia) => {
     tabMedia.sort(function (a,b){ return a.title.localeCompare(b.title) });
-    console.log(tabMedia);
-    console.log("titre");
 };
 
 
@@ -199,12 +198,10 @@ function mediaFactory(data) {
     
         return (article);
     };
-    return { getPhotographersMedias};
-
-    
+    return { getPhotographersMedias}; 
 };
 
 mediaFactory();
 
 
-export {getMediaPhotographer,displayDataMedia,init2,mediaFactory};
+export {getMediaPhotographer};
