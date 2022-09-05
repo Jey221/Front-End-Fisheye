@@ -1,4 +1,8 @@
 //mise en place des fonction pour les media sur la page photographers
+//IMPORT
+import {openCloseListbox,popularitySort} from '../utils/sort.js'
+import {listenForLikes} from '../utils/like.js'
+
 //création d'une constante correspondante a l'id du photographe affiché
 const idPage = window.location.search.split("?id=").join("");
 
@@ -27,7 +31,6 @@ async function displayDataMedia(tabMedia) {
     });
 };
 
-
 async function init2() {
     // Récupère les datas des photographes
     const { tabMedia } = await getMediaPhotographer();
@@ -36,79 +39,6 @@ async function init2() {
 };
 init2();
 
-//mise en place d'une fonction pour incrémentation et décrémentation des likes
-const listenForLikes = (tabMedia) => {    
-    const likes = document.querySelectorAll(".likeLabel");
-    likes.forEach(like => {
-        like.addEventListener("click", (event) => {            
-            event.target.classList.toggle('unchecked');
-            event.target.classList.toggle('checked');
-            const id = like.getAttribute("for");
-            console.log(tabMedia);
-            //localStorage.setItem(`like${id}`, document.getElementById(`likeCount_${id}`).innerHTML)
-            if (event.target.classList.contains('checked')) {
-                document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)+1;
-                const likeEncart = document.getElementById("likeEncart");
-                likeEncart.innerHTML = parseInt(likeEncart.innerHTML)+1;
-            } else {
-                document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)-1;
-                likeEncart.innerHTML = parseInt(likeEncart.innerHTML)-1;
-            };
-        });
-    });
-};
-//fonction pour l'ouverture de la listbox pour le tri
-const openCloseListbox = (tabMedia) => {
-    const listboxContainer = document.getElementById('listboxContainer');
-    const listbox = document.getElementById('listbox');
-    let listboxOptionActuelle = document.getElementById('listboxOptionActuelle');
-    let iconActuel = document.getElementById("listboxOptionActuelleIcon")
-    listboxContainer.addEventListener('click', () => {
-        if(window.getComputedStyle(listbox).display === "none") {
-            listbox.style.setProperty('display', 'flex');
-            listboxOptionActuelle.style.setProperty('display', 'none');
-            iconActuel.style.setProperty('display', 'none');
-            clickListbox(tabMedia);
-        }else{
-            listbox.style.setProperty('display', 'none');
-            listboxOptionActuelle.style.setProperty('display', 'block');
-            iconActuel.style.setProperty('display', 'block');
-        }
-    });
-};
-//option de la listbox
-const clickListbox = (tabMedia) => {
-    const listboxOption = document.querySelectorAll(".listboxOption")
-    listboxOption.forEach((listboxOption) => {
-        listboxOption.addEventListener('click', (e) => {
-            listboxOptionActuelle.innerHTML = e.path[0].innerHTML
-            if (e.path[0].innerHTML === "Popularité") {
-                popularitySort(tabMedia);
-                listenForLikes();
-            }else if (e.path[0].innerHTML === "Date") {
-                dateSort(tabMedia);
-                listenForLikes();
-            }else{
-                titleSort(tabMedia);
-                listenForLikes();
-            }
-            displayDataMedia(tabMedia);
-            listenForLikes();
-        })
-    })
-}
-//fonction de tri par Popularité (+ de like à - de like )
-const popularitySort = (tabMedia) => {
-    tabMedia.sort(function (a,b){ return b.likes - a.likes })  
-};
-//fonction de tri par date (+ ancien au + récent)
-const dateSort = (tabMedia) => {
-    tabMedia.sort(function (a,b){ return new Date(a.date) - new Date(b.date) });
-};
-//fonction de tri par titre (ordre alphabétique)
-const titleSort = (tabMedia) => {
-    tabMedia.sort(function (a,b){ return a.title.localeCompare(b.title) });
-};
 //mise en place d'une fonction pour l'intégration des medias sur la page photographe 
 function mediaFactory(data) {  
     
@@ -202,4 +132,4 @@ function mediaFactory(data) {
 mediaFactory();
 
 
-export {getMediaPhotographer};
+export {getMediaPhotographer, displayDataMedia};

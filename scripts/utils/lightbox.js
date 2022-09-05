@@ -115,3 +115,4 @@ class lightbox {
 };
 
 lightbox.init()
+export {lightbox}
