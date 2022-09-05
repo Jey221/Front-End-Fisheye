@@ -6,7 +6,6 @@ const listenForLikes = (tabMedia) => {
             event.target.classList.toggle('unchecked');
             event.target.classList.toggle('checked');
             const id = like.getAttribute("for");
-            console.log(tabMedia);
             //localStorage.setItem(`like${id}`, document.getElementById(`likeCount_${id}`).innerHTML)
             if (event.target.classList.contains('checked')) {
                 document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)+1;

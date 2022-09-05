@@ -1,6 +1,6 @@
 //Mettre le code JavaScript lié à la page photographer.html
 //import des données
-import {getMediaPhotographer} from '../factories/media.js'
+import {getMediaPhotographer, initMedia} from '../factories/media.js'
 
 //création d'une constante correspondante a l'URL
 const idPage = window.location.search.split("?id=").join("");
@@ -33,6 +33,7 @@ async function init() {
     // Récupère les datas des photographes
     const { tabPhotographe } = await getInfosPhotographer();
     displayData(tabPhotographe);
+    initMedia();
 };
 init();
 
@@ -150,5 +151,3 @@ function infoFactory(data) {
 };
 
 infoFactory();
-
-getMediaPhotographer();

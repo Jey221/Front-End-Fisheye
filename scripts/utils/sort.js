@@ -1,6 +1,7 @@
 //IMPORT
 import { displayDataMedia } from "../factories/media.js";
 import { lightbox } from "./lightbox.js";
+import {listenForLikes} from "./like.js"
 
 //fonction pour l'ouverture de la listbox pour le tri
 const openCloseListbox = (tabMedia) => {
@@ -36,6 +37,8 @@ const clickListbox = (tabMedia) => {
             }
             displayDataMedia(tabMedia);
             lightbox.init()
+            listenForLikes()
+
         })
     })
 }

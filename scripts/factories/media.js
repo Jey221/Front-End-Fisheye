@@ -31,13 +31,13 @@ async function displayDataMedia(tabMedia) {
     });
 };
 
-async function init2() {
+async function initMedia() {
     // Récupère les datas des photographes
     const { tabMedia } = await getMediaPhotographer();
     displayDataMedia(tabMedia);
     listenForLikes(tabMedia);
 };
-init2();
+initMedia();
 
 //mise en place d'une fonction pour l'intégration des medias sur la page photographe 
 function mediaFactory(data) {  
@@ -132,4 +132,4 @@ function mediaFactory(data) {
 mediaFactory();
 
 
-export {getMediaPhotographer, displayDataMedia};
+export {getMediaPhotographer, displayDataMedia, initMedia};
