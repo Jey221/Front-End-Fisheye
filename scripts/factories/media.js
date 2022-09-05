@@ -32,25 +32,24 @@ async function init2() {
     // Récupère les datas des photographes
     const { tabMedia } = await getMediaPhotographer();
     displayDataMedia(tabMedia);
-    listenForLikes();
+    listenForLikes(tabMedia);
 };
 init2();
 
 //mise en place d'une fonction pour incrémentation et décrémentation des likes
-const listenForLikes = () => {    
+const listenForLikes = (tabMedia) => {    
     const likes = document.querySelectorAll(".likeLabel");
-    
     likes.forEach(like => {
         like.addEventListener("click", (event) => {            
             event.target.classList.toggle('unchecked');
             event.target.classList.toggle('checked');
-            const id = like.getAttribute("for");     
+            const id = like.getAttribute("for");
+            console.log(tabMedia);
+            //localStorage.setItem(`like${id}`, document.getElementById(`likeCount_${id}`).innerHTML)
             if (event.target.classList.contains('checked')) {
                 document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)+1;
                 const likeEncart = document.getElementById("likeEncart");
                 likeEncart.innerHTML = parseInt(likeEncart.innerHTML)+1;
-                localStorage.setItem("like", document.getElementById(`likeCount_${id}`).innerHTML)
-                console.log(localStorage.getItem("like"));
             } else {
                 document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)-1;
                 likeEncart.innerHTML = parseInt(likeEncart.innerHTML)-1;
@@ -58,7 +57,6 @@ const listenForLikes = () => {
         });
     });
 };
-
 //fonction pour l'ouverture de la listbox pour le tri
 const openCloseListbox = (tabMedia) => {
     const listboxContainer = document.getElementById('listboxContainer');
@@ -67,15 +65,14 @@ const openCloseListbox = (tabMedia) => {
     let iconActuel = document.getElementById("listboxOptionActuelleIcon")
     listboxContainer.addEventListener('click', () => {
         if(window.getComputedStyle(listbox).display === "none") {
-            listbox.style.setProperty('display', 'flex')
-            listboxOptionActuelle.style.setProperty('display', 'none')
-            iconActuel.style.setProperty('display', 'none')
-            clickListbox(tabMedia)
-            console.log(localStorage.getItem("like"));
+            listbox.style.setProperty('display', 'flex');
+            listboxOptionActuelle.style.setProperty('display', 'none');
+            iconActuel.style.setProperty('display', 'none');
+            clickListbox(tabMedia);
         }else{
-            listbox.style.setProperty('display', 'none')
-            listboxOptionActuelle.style.setProperty('display', 'block')
-            iconActuel.style.setProperty('display', 'block')
+            listbox.style.setProperty('display', 'none');
+            listboxOptionActuelle.style.setProperty('display', 'block');
+            iconActuel.style.setProperty('display', 'block');
         }
     });
 };
@@ -86,12 +83,14 @@ const clickListbox = (tabMedia) => {
         listboxOption.addEventListener('click', (e) => {
             listboxOptionActuelle.innerHTML = e.path[0].innerHTML
             if (e.path[0].innerHTML === "Popularité") {
-                popularitySort(tabMedia)
-                console.log(localStorage.getItem("like"));
+                popularitySort(tabMedia);
+                listenForLikes();
             }else if (e.path[0].innerHTML === "Date") {
-                dateSort(tabMedia)
+                dateSort(tabMedia);
+                listenForLikes();
             }else{
-                titleSort(tabMedia)
+                titleSort(tabMedia);
+                listenForLikes();
             }
             displayDataMedia(tabMedia);
             listenForLikes();
@@ -110,8 +109,6 @@ const dateSort = (tabMedia) => {
 const titleSort = (tabMedia) => {
     tabMedia.sort(function (a,b){ return a.title.localeCompare(b.title) });
 };
-
-
 //mise en place d'une fonction pour l'intégration des medias sur la page photographe 
 function mediaFactory(data) {  
     
@@ -176,7 +173,8 @@ function mediaFactory(data) {
         likeZone.appendChild(likeCount);
         likeCount.setAttribute("class", "likeCount");
         likeCount.setAttribute("id", `likeCount_${id}`);
-        likeCount.innerText = data.likes;
+        localStorage.setItem(`like${id}`,data.likes)
+        likeCount.innerText = parseInt(localStorage.getItem(`like${id}`));
 
         //création d'un label like 
         const likeLabel = document.createElement( 'label' );
