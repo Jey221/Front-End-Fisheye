@@ -2,6 +2,7 @@
 //IMPORT
 import {openCloseListbox,popularitySort} from '../utils/sort.js'
 import {listenForLikes} from '../utils/like.js'
+import { lightbox } from "../utils/lightbox.js";
 
 //création d'une constante correspondante a l'id du photographe affiché
 const idPage = window.location.search.split("?id=").join("");
@@ -36,6 +37,7 @@ async function initMedia() {
     const { tabMedia } = await getMediaPhotographer();
     displayDataMedia(tabMedia);
     listenForLikes(tabMedia);
+    lightbox.init()
 };
 initMedia();
 

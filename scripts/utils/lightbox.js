@@ -20,7 +20,6 @@ class lightbox {
     constructor (url, gallery) {
         this.element = this.buildDOM(url)
         this.gallery = gallery
-        console.log(this.gallery);
         document.body.appendChild(this.element)
         this.loadImage(url)
         this.onKeyUp = this.onKeyUp.bind(this)

@@ -28,6 +28,7 @@ async function displayData(tabPhotographe) {
         profil.insertBefore(userCardDOM , buttonForm);
     });
 
+
 };
 async function init() {
     // Récupère les datas des photographes
