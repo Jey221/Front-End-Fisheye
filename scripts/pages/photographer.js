@@ -33,6 +33,7 @@ async function init() {
     // Récupère les datas des photographes
     const { tabPhotographe } = await getInfosPhotographer();
     displayData(tabPhotographe);
+    infoFactory();
     initMedia();
 };
 init();
@@ -124,21 +125,6 @@ function infoFactory(data) {
         encart.appendChild(spanPrix);
         spanPrix.textContent = data.price + "€/jour";
         
-        //calcul de la somme des likes sur la gallerie
-        var allLikeSpans = document.querySelectorAll('.likeCount');
-        var arrayLike = [];
-        for (var i = 0; i < allLikeSpans.length; i++) {
-            arrayLike.push(allLikeSpans[i].innerHTML);
-        }
-        var numberSpans = []
-        for (var i = 0; i < arrayLike.length; i++) {
-            numberSpans.push(parseInt(arrayLike[i]));
-        }
-        let sum = 0;
-        for (let i = 0; i <numberSpans.length; i++) {
-            sum += numberSpans[i];
-        }
-        spanLike.textContent = sum ;
 
         //intégrer nom du photographe dans le modal
         const titreModal = document.getElementById("titreModalContact");
@@ -150,4 +136,3 @@ function infoFactory(data) {
 
 };
 
-infoFactory();

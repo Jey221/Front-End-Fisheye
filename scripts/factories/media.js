@@ -23,7 +23,7 @@ async function getMediaPhotographer() {
 //mise en place d'une fonction pour afficher le contenu
 async function displayDataMedia(tabMedia) {
     const gallery = document.getElementById('gallery');
-    gallery.innerHTML = ""
+    gallery.innerHTML = "";
     tabMedia.forEach((tabMedia) => {
         const photographerModel = mediaFactory(tabMedia);
         const userCardDOM = photographerModel.getPhotographersMedias(tabMedia);

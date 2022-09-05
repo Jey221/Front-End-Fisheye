@@ -30,6 +30,8 @@ const clickListbox = (tabMedia) => {
             listboxOptionActuelle.innerHTML = e.path[0].innerHTML
             if (e.path[0].innerHTML === "Popularité") {
                 popularitySort(tabMedia);
+                document.getElementById("likeEncart").innerHTML = "";
+
             }else if (e.path[0].innerHTML === "Date") {
                 dateSort(tabMedia);
             }else{
@@ -38,7 +40,6 @@ const clickListbox = (tabMedia) => {
             displayDataMedia(tabMedia);
             lightbox.init()
             listenForLikes()
-
         })
     })
 }
