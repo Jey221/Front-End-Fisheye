@@ -63,3 +63,5 @@ function photographerFactory(data) {
     };
     return { getUserCardDOM };
 };
+
+export {photographerFactory}
