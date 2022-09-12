@@ -58,6 +58,7 @@ function mediaFactory(data) {
         const videoName = data.video;
         card.setAttribute("class","cardMedia");
         links.setAttribute("href",`assets/picture/${idPage}/${videoName || pictureName}`)
+        links.setAttribute("aria-label", `Ouverture de la lightbox avec le media ${videoName || pictureName}` );
         article.appendChild(card);
         card.appendChild(links)
         //intégrer le media
@@ -71,6 +72,7 @@ function mediaFactory(data) {
             articleMedia.setAttribute("class", "medias image");
             articleMedia.setAttribute("id", id);
             articleMedia.setAttribute("alt", titlePicture );
+            articleMedia.setAttribute("aria-label", titlePicture );
         }else if (data.hasOwnProperty('video')) {
             const titlePicture = data.title;
             articleMedia = document.createElement('video')
@@ -78,6 +80,7 @@ function mediaFactory(data) {
             links.appendChild(articleMedia);
             articleMedia.setAttribute("class", "medias video");
             articleMedia.setAttribute("alt", titlePicture );
+            articleMedia.setAttribute("aria-label", titlePicture );
             articleMedia.setAttribute("id", id);
         };
 
@@ -89,10 +92,13 @@ function mediaFactory(data) {
         //intégrer les infos du footer
         //nom du media
         const span = document.createElement( 'span' );
+        const h2 = document.createElement( 'h2' );
         footer.appendChild(span);
-        span.setAttribute("class","article_media_title");
-        span.setAttribute("id",data.video || data.image );
-        span.textContent = data.title;
+        span.appendChild(h2)
+        h2.setAttribute("class","article_media_title");
+        h2.setAttribute("id",data.video || data.image );
+        h2.setAttribute("aria-describedby", id);
+        h2.textContent = data.title;
 
         //like sur media
         //délimitation de la zone de like 
@@ -112,6 +118,7 @@ function mediaFactory(data) {
         const likeLabel = document.createElement( 'label' );
         likeZone.appendChild(likeLabel);
         likeLabel.setAttribute("for", id );
+        likeLabel.setAttribute("tabindex", "0");
         likeLabel.classList.add('likeLabel');
 
         //création d'un Input like   

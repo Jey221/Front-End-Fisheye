@@ -9,60 +9,60 @@
   </head>
   <body>
     <header>
-      <a href="index.html" alt="Fisheye Home page" aria-label="lien vers la page d'accueil"><img src="assets/images/logo.png" class="logo" alt="logo de Fisheye"/></a>
+      <a href="index.html" aria-label="lien vers la page d'accueil" tabindex="1"><img src="assets/images/logo.png" class="logo" alt="logo de Fisheye"/></a>
     </header>
     <main id="main">
       <section id="photographer-profil" class="photograph-header">
         <!--section injecté par code javascript-->
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" type="button" onclick="displayModal()" tabindex="1">Contactez-moi</button>
       </section>
-      <div id="sortArea">
+      <nav id="sortArea" aria-label="menu pour trier la galerie">
         <label id="listboxLabel" for="listboxContainer">Trier par
-          <div id="listboxContainer" role="button" aria-haspopup="listbox" tabindex="0" aria-expanded="false">
+          <div id="listboxContainer" role="button" aria-haspopup="listbox" tabindex="1" aria-expanded="false">
             <span id="listboxOptionActuelle">Popularité</span><span id="listboxOptionActuelleIcon"><i class="fa-solid fa-angle-down"></i></span>
-            <div role="listbox" id="listbox" tabindex="-1" >
+            <div role="listbox" id="listbox" aria-label="liste des options">
               <span><i class="fa-solid fa-angle-up"></i></span>
               <div id="options">
-                <div class="listboxOption" role="option" tabindex="-1" id="listboxPopularity">Popularité</div>
-                <div class="listboxOption" role="option" tabindex="-1" id="listboxDate">Date</div>
-                <div class="listboxOption" role="option" tabindex="-1" id="listboxTitre">Titre</div>
+                <div class="listboxOption" role="option" id="listboxPopularity" aria-label="tri par Popularité" tabindex="0">Popularité</div>
+                <div class="listboxOption" role="option" id="listboxDate" aria-label="tri par Date" tabindex="0">Date</div>
+                <div class="listboxOption" role="option" id="listboxTitre" aria-label="tri par ordre alphabétique" tabindex="0">Titre</div>
               </div>
             </div>
           </div>
         </label>
-      </div>
-      <section id="gallery" class="galleryMedia">
+      </nav>
+      <section id="gallery" class="galleryMedia" aria-label="galerie photo">
         <!--section injecté par code javascript-->
       </section>
     </main>
     <div id="contact_modal">
 			<div class="modal">
-				<header>
+				<section>
           <h2 id="titreModalContact"></h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" alt="fermer le formulaire"/>
-        </header>
+          <img src="assets/icons/close.svg" onclick="closeModal()" alt="fermer le formulaire" aria-label="fermeture du formulaire" tabindex="0"/>
+        </section>
 				<form>
 					<div>
 						<label for="prénom">Prénom</label>
-						<input class="text_control" type="text" id="prénom" name="prénom" minlength="2" maxlength="30" tabindex="1"/>
-            <small class="messageErreur"></small>
+						<input class="text_control" type="text" id="prénom" name="prénom" minlength="2" maxlength="30" tabindex="0" aria-describedby="smallFirst"/>
+            <small id="smallFirst" class="messageErreur"></small>
 					</div>
           <div>
 						<label for="nom">Nom</label>
-						<input class="text_control" type="text" id="nom" name="nom" minlength="2" maxlength="30" tabindex="2"/>
-            <small class="messageErreur"></small>
+						<input class="text_control" type="text" id="nom" name="nom" minlength="2" maxlength="30" tabindex="0" aria-describedby="smallLast"/>
+            <small  id="smallLast" class="messageErreur"></small>
 					</div>
 					<div>
 						<label for="email">Email</label>
-						<input class="text_control" type="email" id="email" name="email" tabindex="3"/>
-            <small class="messageErreur"></small>
+						<input class="text_control" type="email" id="email" name="email" tabindex="0" aria-describedby="smallEmail"/>
+            <small  id="smallEmail" class="messageErreur"></small>
 					</div>
 					<div>
 						<label for="message">Votre message</label>
-						<textarea class="text_control" type="text" id="message" name="message"  rows="100" cols="60" maxlength="300" tabindex="4"></textarea>
-            <small class="messageErreur"></small>
+						<textarea class="text_control" id="message" name="message"  rows="100" cols="60" maxlength="300" tabindex="0" aria-describedby="smallMessage"></textarea>
+            <small  id="smallMessage" class="messageErreur"></small>
 					</div>
-          <button class="contact_button" id="boutonEnvoyer">Envoyer</button>
+          <button class="contact_button" type="submit" id="boutonEnvoyer" aria-label="envoi du formulaire" tabindex="0">Envoyer</button>
 				</form>
 			</div>
 		</div>

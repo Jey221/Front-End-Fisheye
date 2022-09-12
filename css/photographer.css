@@ -25,7 +25,7 @@
     background-color: #D3573C;
     color: black;
 }
-.nomPhotographe h2 {
+.nomPhotographe h1 {
     color: #D3573C;
     font-size: 64px;
     font-weight: 400;
@@ -108,12 +108,13 @@ article {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 5%;
     font-size: 19px;
     color:#901C1C;
 }
 .article_media_title {
     font-weight: 400;
+    font-size: 19px;
+
 }
 .likeZone {
     display: flex;
@@ -131,7 +132,6 @@ input[type="checkbox"] {
 }
 input[type="checkbox"], .likeLabel .checked {
     color: #DB8876;
-    ;
 }
 /***********************BOUTON DE TRI (LISTBOX)***************************/
 #sortArea {
@@ -229,18 +229,19 @@ input[type="checkbox"], .likeLabel .checked {
     margin-top: 2%;
     box-shadow: 13px 15px 5px #00000040;;
 }
-.modal header {
+.modal section {
+    display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 10%;
+    height: 100%;
     align-items: flex-start;
 }
-.modal header img {
+.modal section img {
     cursor: pointer;
     width: 35px;
     padding-top: 2%;
 }
-.modal header h2 {
+.modal section h2 {
     font-size: 47px;
     font-weight: normal;
     text-align: start;

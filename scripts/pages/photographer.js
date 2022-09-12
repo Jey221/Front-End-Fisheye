@@ -40,7 +40,6 @@ async function init() {
 };
 init();
 
-
 //mise en place d'une fonction pour les différentes info sur page Photographer
 function infoFactory(data) {  
     function getPhotographersInfos() { 
@@ -54,34 +53,31 @@ function infoFactory(data) {
         infoPhotographe.setAttribute("class","infoPhotographe");
         profil.insertBefore(infoPhotographe , buttonForm);
 
-
         //créer une div pour chaque lignes d'infos
         //NOM
         const nomPhotographe = document.createElement( 'div' );
         nomPhotographe.setAttribute("class","nomPhotographe");
+        nomPhotographe.setAttribute("tabindex","1");
         infoPhotographe.appendChild(nomPhotographe);
 
         //VILLE,PAYS
         const villePhotographe = document.createElement( 'div' );
         villePhotographe.setAttribute("class","villePhotographe");
+        villePhotographe.setAttribute("tabindex","1");
         infoPhotographe.appendChild(villePhotographe);
 
         //TAGLINE
         const taglinePhotographe = document.createElement( 'div' );
         taglinePhotographe.setAttribute("class","taglinePhotographe");
+        taglinePhotographe.setAttribute("tabindex","1");
         infoPhotographe.appendChild(taglinePhotographe);
         
-        //TAG LIST
-        const tagListPhotographe = document.createElement( 'div' );
-        tagListPhotographe.setAttribute("class","tagListPhotographe");
-        infoPhotographe.appendChild(tagListPhotographe);
-
         //intégration des infos du photographe 
         //NOM
-        const h2 = document.createElement( 'h2' );
-        nomPhotographe.appendChild(h2);
+        const h1 = document.createElement( 'h1' );
+        nomPhotographe.appendChild(h1);
         this.name = data.name;
-        h2.textContent = this.name;
+        h1.textContent = this.name;
 
         //VILLE,PAYS
         const pVille = document.createElement( 'p' );
@@ -109,8 +105,9 @@ function infoFactory(data) {
         img.setAttribute("src", `assets/photographers/${profilPicture}`);
         photoProfil.appendChild(img);
         img.setAttribute("alt", "photo de profil de " + this.name );
+        img.setAttribute("aria-label", this.name );
+        img.setAttribute("tabindex","1");
         img.setAttribute("class", "photo_profil_info_photographe");
-
 
         //intégrer encart tarif & total like
         const main = document.getElementById('main');
@@ -126,7 +123,6 @@ function infoFactory(data) {
         encart.appendChild(heart);
         encart.appendChild(spanPrix);
         spanPrix.textContent = data.price + "€/jour";
-        
 
         //intégrer nom du photographe dans le modal
         const titreModal = document.getElementById("titreModalContact");

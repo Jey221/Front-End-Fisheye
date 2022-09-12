@@ -20,7 +20,7 @@ const openCloseListbox = (tabMedia) => {
             listboxOptionActuelle.style.setProperty('display', 'block');
             iconActuel.style.setProperty('display', 'block');
         }
-    });
+    }); 
 };
 //option de la listbox
 const clickListbox = (tabMedia) => {
@@ -30,8 +30,6 @@ const clickListbox = (tabMedia) => {
             listboxOptionActuelle.innerHTML = e.path[0].innerHTML
             if (e.path[0].innerHTML === "Popularité") {
                 popularitySort(tabMedia);
-                document.getElementById("likeEncart").innerHTML = "";
-
             }else if (e.path[0].innerHTML === "Date") {
                 dateSort(tabMedia);
             }else{
@@ -55,5 +53,28 @@ const dateSort = (tabMedia) => {
 const titleSort = (tabMedia) => {
     tabMedia.sort(function (a,b){ return a.title.localeCompare(b.title) });
 };
+
+
+window.addEventListener("keydown", function (event){
+    switch (event.key) {
+        case "ArrowDown":
+            console.log("fleche");
+            break;
+        case "Enter":
+            let iconActuel = document.getElementById("listboxOptionActuelleIcon");
+            listbox.style.setProperty('display', 'flex');
+            listboxOptionActuelle.style.setProperty('display', 'none');
+            iconActuel.style.setProperty('display', 'none');
+            clickListbox();
+            console.log("enter");
+            break;
+        case "Escape":
+            listbox.style.setProperty('display', 'none');
+            listboxOptionActuelle.style.setProperty('display', 'block');
+            iconActuel.style.setProperty('display', 'block');
+            console.log("escape");
+            break;
+    }
+})                
 
 export {openCloseListbox,popularitySort}
