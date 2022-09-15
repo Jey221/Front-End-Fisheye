@@ -18,7 +18,7 @@ function photographerFactory(data) {
         this.id = data.id;
         a.setAttribute("href","photographer.html?id=" + this.id);
         a.setAttribute("aria-label", "lien vers page de " + data.name);
-        a.setAttribute("tabindex", "1");
+        a.setAttribute("tabindex", "0");
         card.appendChild(a);
 
         //création des conteneur photo

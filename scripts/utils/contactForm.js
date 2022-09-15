@@ -1,14 +1,53 @@
 // fonction d'ouverture du modal de contact
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
+  const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+  modal.setAttribute("aria-hidden", "false")
+  document.getElementById("main").setAttribute("aria-hidden", "true")
+  firstFocusableElement.focus();  
 }
 
 // fonction de fermeture du modal de contact
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true")
+    document.getElementById("main").setAttribute("aria-hidden", "false")
 }
+// fonction de fermeture du modal de contact avec touche Echap
+document.addEventListener('keydown', function(e) {
+  let isTabPressed = e.key === 'Escape';
+  if(isTabPressed) {
+    closeModal();
+  };
+});
+
+// mise en place du focus sur le formulaire
+const  focusableElements ='button, label, input, textarea, [tabindex]:not([tabindex="-1"])';// séléction des cibles du focus
+const modal = document.querySelector('#contact_modal'); 
+
+const focusableContent = modal.querySelectorAll(focusableElements);
+const firstFocusableElement = focusableContent[0]; // premier élément focusable
+const lastFocusableElement = focusableContent[focusableContent.length - 1]; // dernier élément focusable
+
+document.addEventListener('keydown', function(e) { 
+  let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+
+  if (!isTabPressed) { // si une autre touche que tab est préssée
+    return;
+  }
+  if (e.shiftKey) { // retour en arrière si shift+tab
+    if (document.activeElement === firstFocusableElement) {
+      lastFocusableElement.focus(); // focus sur le dernier element si passe le premier element
+      e.preventDefault();
+    }
+  } else { // defilement dans l'ordre avec la touche tab 
+    if (document.activeElement === lastFocusableElement) { 
+      firstFocusableElement.focus(); // focus sur le premier element si passe le dernier element
+      e.preventDefault();
+    }
+  }
+});
 
 // annonce des variables pour le formulaire
 let firstName = document.getElementById('prénom');

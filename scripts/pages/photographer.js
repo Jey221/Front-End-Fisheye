@@ -57,19 +57,19 @@ function infoFactory(data) {
         //NOM
         const nomPhotographe = document.createElement( 'div' );
         nomPhotographe.setAttribute("class","nomPhotographe");
-        nomPhotographe.setAttribute("tabindex","1");
+        nomPhotographe.setAttribute("tabindex","0");
         infoPhotographe.appendChild(nomPhotographe);
 
         //VILLE,PAYS
         const villePhotographe = document.createElement( 'div' );
         villePhotographe.setAttribute("class","villePhotographe");
-        villePhotographe.setAttribute("tabindex","1");
+        villePhotographe.setAttribute("tabindex","0");
         infoPhotographe.appendChild(villePhotographe);
 
         //TAGLINE
         const taglinePhotographe = document.createElement( 'div' );
         taglinePhotographe.setAttribute("class","taglinePhotographe");
-        taglinePhotographe.setAttribute("tabindex","1");
+        taglinePhotographe.setAttribute("tabindex","0");
         infoPhotographe.appendChild(taglinePhotographe);
         
         //intégration des infos du photographe 
@@ -106,7 +106,7 @@ function infoFactory(data) {
         photoProfil.appendChild(img);
         img.setAttribute("alt", "photo de profil de " + this.name );
         img.setAttribute("aria-label", this.name );
-        img.setAttribute("tabindex","1");
+        img.setAttribute("tabindex","0");
         img.setAttribute("class", "photo_profil_info_photographe");
 
         //intégrer encart tarif & total like

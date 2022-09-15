@@ -54,11 +54,11 @@ const titleSort = (tabMedia) => {
     tabMedia.sort(function (a,b){ return a.title.localeCompare(b.title) });
 };
 
-
-window.addEventListener("keydown", function (event){
+listboxContainer.addEventListener("keydown", function (event){
     switch (event.key) {
         case "ArrowDown":
-            console.log("fleche");
+            console.log(event);
+            console.log(document.querySelectorAll(".listboxOption").nextSibling);
             break;
         case "Enter":
             let iconActuel = document.getElementById("listboxOptionActuelleIcon");
@@ -68,7 +68,7 @@ window.addEventListener("keydown", function (event){
             clickListbox();
             console.log("enter");
             break;
-        case "Escape":
+        case "Escape" || "click":
             listbox.style.setProperty('display', 'none');
             listboxOptionActuelle.style.setProperty('display', 'block');
             iconActuel.style.setProperty('display', 'block');

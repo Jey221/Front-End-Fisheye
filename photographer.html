@@ -9,19 +9,19 @@
   </head>
   <body>
     <header>
-      <a href="index.html" aria-label="lien vers la page d'accueil" tabindex="1"><img src="assets/images/logo.png" class="logo" alt="logo de Fisheye"/></a>
+      <a href="index.html" aria-label="lien vers la page d'accueil" tabindex="0"><img src="assets/images/logo.png" class="logo" alt="logo de Fisheye"/></a>
     </header>
     <main id="main">
       <section id="photographer-profil" class="photograph-header">
         <!--section injecté par code javascript-->
-        <button class="contact_button" type="button" onclick="displayModal()" tabindex="1">Contactez-moi</button>
+        <button class="contact_button" type="button" onclick="displayModal()" tabindex="0">Contactez-moi</button>
       </section>
       <nav id="sortArea" aria-label="menu pour trier la galerie">
         <label id="listboxLabel" for="listboxContainer">Trier par
-          <div id="listboxContainer" role="button" aria-haspopup="listbox" tabindex="1" aria-expanded="false">
-            <span id="listboxOptionActuelle">Popularité</span><span id="listboxOptionActuelleIcon"><i class="fa-solid fa-angle-down"></i></span>
+          <div id="listboxContainer" role="button" aria-haspopup="listbox" tabindex="0" aria-expanded="false"aria-haspopup="true">
+            <span id="listboxOptionActuelle">Popularité</span><span id="listboxOptionActuelleIcon"><i class="fa-solid fa-angle-down" aria-hidden="true"></i></span>
             <div role="listbox" id="listbox" aria-label="liste des options">
-              <span><i class="fa-solid fa-angle-up"></i></span>
+              <span><i class="fa-solid fa-angle-up" aria-hidden="true"></i></span>
               <div id="options">
                 <div class="listboxOption" role="option" id="listboxPopularity" aria-label="tri par Popularité" tabindex="0">Popularité</div>
                 <div class="listboxOption" role="option" id="listboxDate" aria-label="tri par Date" tabindex="0">Date</div>
@@ -35,12 +35,12 @@
         <!--section injecté par code javascript-->
       </section>
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal" tabindex="-1" role="dialog" aria-describedby="modalFormulaire">
 			<div class="modal">
-				<section>
-          <h2 id="titreModalContact"></h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" alt="fermer le formulaire" aria-label="fermeture du formulaire" tabindex="0"/>
-        </section>
+				<header>
+          <h2 id="titreModalContact" tabindex="0"></h2>
+          <img src="assets/icons/close.svg" onclick="closeModal()" alt="fermer le formulaire" aria-label="fermeture du formulaire" tabindex="0" role="button"/>
+        </header>
 				<form>
 					<div>
 						<label for="prénom">Prénom</label>

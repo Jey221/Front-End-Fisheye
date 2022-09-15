@@ -125,13 +125,13 @@ function mediaFactory(data) {
         const likeZoneInput = document.createElement( 'input' );
         likeLabel.appendChild(likeZoneInput);
         likeZoneInput.setAttribute("id", `like_${id}` );
-        likeZoneInput.setAttribute("aria-label", "like checkbox");
         likeZoneInput.setAttribute("type", "checkbox");
 
         //mise en place d'un icon coeur   
         const heartCheck = document.createElement( 'i' );
         likeLabel.appendChild(heartCheck);
         heartCheck.setAttribute("class", "fa-solid fa-heart unchecked");
+        heartCheck.setAttribute("aria-label", "likes");
     
         return (article);
     };
