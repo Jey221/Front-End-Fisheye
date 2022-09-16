@@ -7,21 +7,31 @@ import {listenForLikes} from "./like.js"
 const openCloseListbox = (tabMedia) => {
     const listboxContainer = document.getElementById('listboxContainer');
     const listbox = document.getElementById('listbox');
-    let listboxOptionActuelle = document.getElementById('listboxOptionActuelle');
-    let iconActuel = document.getElementById("listboxOptionActuelleIcon")
     listboxContainer.addEventListener('click', () => {
         if(window.getComputedStyle(listbox).display === "none") {
-            listbox.style.setProperty('display', 'flex');
-            listboxOptionActuelle.style.setProperty('display', 'none');
-            iconActuel.style.setProperty('display', 'none');
-            clickListbox(tabMedia);
+            openListbox(tabMedia);
         }else{
-            listbox.style.setProperty('display', 'none');
-            listboxOptionActuelle.style.setProperty('display', 'block');
-            iconActuel.style.setProperty('display', 'block');
+            closeListbox(tabMedia);
         }
     }); 
 };
+
+const listboxOptionActuelle = document.getElementById('listboxOptionActuelle');
+const iconActuel = document.getElementById("listboxOptionActuelleIcon")
+
+function openListbox(tabMedia) {
+    listbox.style.setProperty('display', 'flex');
+    listboxOptionActuelle.style.setProperty('display', 'none');
+    iconActuel.style.setProperty('display', 'none');
+    clickListbox(tabMedia);
+}
+function closeListbox(tabMedia) {
+    listbox.style.setProperty('display', 'none');
+    listboxOptionActuelle.style.setProperty('display', 'block');
+    iconActuel.style.setProperty('display', 'block');
+}
+
+
 //option de la listbox
 const clickListbox = (tabMedia) => {
     const listboxOption = document.querySelectorAll(".listboxOption")
@@ -54,25 +64,33 @@ const titleSort = (tabMedia) => {
     tabMedia.sort(function (a,b){ return a.title.localeCompare(b.title) });
 };
 
+//mise en place du focus et de la nav clavier sur la listbox de tri WIP:SELECTION VIA LA TOUCHE ENTER
+const  focusableListboxOption = 'div';
+const modalListbox= document.getElementById("options");
+const focusableContent = modalListbox.querySelectorAll(focusableListboxOption);
+const firstFocusableListboxOption = focusableContent[0];
+const lastFocusableListboxOption = focusableContent[focusableContent.length - 1];
+
 listboxContainer.addEventListener("keydown", function (event){
     switch (event.key) {
-        case "ArrowDown":
-            console.log(event);
-            console.log(document.querySelectorAll(".listboxOption").nextSibling);
+        case "Tab":
+            if (document.activeElement === lastFocusableListboxOption) {
+                firstFocusableListboxOption.focus(); 
+                event.preventDefault();
+            };
             break;
         case "Enter":
-            let iconActuel = document.getElementById("listboxOptionActuelleIcon");
-            listbox.style.setProperty('display', 'flex');
-            listboxOptionActuelle.style.setProperty('display', 'none');
-            iconActuel.style.setProperty('display', 'none');
-            clickListbox();
-            console.log("enter");
+            openListbox();
+            if (event.path[0].innerHTML === "Popularity") {
+                popularitySort();
+            }else if (event.path[0].innerHTML === "Date") {
+                dateSort();
+            }else{
+                titleSort();
+            }
             break;
         case "Escape" || "click":
-            listbox.style.setProperty('display', 'none');
-            listboxOptionActuelle.style.setProperty('display', 'block');
-            iconActuel.style.setProperty('display', 'block');
-            console.log("escape");
+            closeListbox();
             break;
     }
 })                

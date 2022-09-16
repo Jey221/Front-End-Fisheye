@@ -25,13 +25,13 @@ document.addEventListener('keydown', function(e) {
 // mise en place du focus sur le formulaire
 const  focusableElements ='button, label, input, textarea, [tabindex]:not([tabindex="-1"])';// séléction des cibles du focus
 const modal = document.querySelector('#contact_modal'); 
-
 const focusableContent = modal.querySelectorAll(focusableElements);
 const firstFocusableElement = focusableContent[0]; // premier élément focusable
 const lastFocusableElement = focusableContent[focusableContent.length - 1]; // dernier élément focusable
 
+//gestion de la nav sur le formulaie avec la touche tab
 document.addEventListener('keydown', function(e) { 
-  let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+  let isTabPressed = e.key === 'Tab';
 
   if (!isTabPressed) { // si une autre touche que tab est préssée
     return;
@@ -60,7 +60,6 @@ let smallFirst = firstName.nextElementSibling;
 let smallLast = lastName.nextElementSibling;
 let smallEmail = email.nextElementSibling;
 let smallMessage = message.nextElementSibling;
-
 
 // annonce de la fonction de validation du formulaire
 // blocage de l'action de soumission de formulaire
@@ -122,7 +121,6 @@ document.getElementById("boutonEnvoyer").addEventListener("click",(e) => {
     var valueMessage = message.value; 
     var valid3 = true;
   };
-	
 
   // envoi des infos dans la console
   if (valid==true && valid1==true && valid2==true && valid3==true){
