@@ -32,7 +32,7 @@ class lightbox {
         const spanInfo = this.element.querySelector('#infoMediaLightbox')
         let target = url.split(`assets/picture/${idPage}/`).join("")
         let typeImage = url.includes('.jpg')
-        containerMedia.innerHTML = '';
+        //containerMedia.innerHTML = '';
         let media;
         if (typeImage === true ) {
             //Si Image
@@ -41,6 +41,7 @@ class lightbox {
             media.setAttribute("src", url );
             media.setAttribute("alt", document.getElementById(target).innerHTML );
             media.setAttribute("tabindex","0");
+            containerMedia.lastChild.remove();
             containerMedia.appendChild(media);
             this.url = url;
             spanInfo.textContent = document.getElementById(target).innerHTML
@@ -52,6 +53,7 @@ class lightbox {
             media.setAttribute("alt", document.getElementById(target).innerHTML );
             media.setAttribute("tabindex","0");
             media.controls = true;
+            containerMedia.lastChild.remove();
             containerMedia.appendChild(media)
             this.url = url;
             spanInfo.textContent = document.getElementById(target).innerHTML
@@ -103,8 +105,9 @@ class lightbox {
             <section id="template_lightbox">
                 <div id="arrowLeft" class="arrow prev" role="navigation"><img src="assets/icons/chevron-left-solid.svg" aria-label="aller au media précédent" alt="précédent" tabindex="0"/></div>
                 <div id="mediaContainerZone">
-                    <div class="containerMedia"><span id="mediaLightbox"></span></div>
-                    <div class="containerDetail"><span id="infoMediaLightbox"></span></div>
+                    <figure id="mediaLightbox">
+                        <figcaption id="infoMediaLightbox"></figcaption>
+                    </figure>
                 </div>
                 <div id="arrowRight" class="arrow next" role="navigation"><img src="assets/icons/chevron-right-solid.svg" aria-label="aller au media suivant" alt="suivant" tabindex="0"/></div>
                 <div id="closeLightbox" role="navigation"><img id="closeLightboxImage" src="assets/icons/close2.svg" aria-label="fermer la lightbox" alt="fermeture" tabindex="0"/></div>
