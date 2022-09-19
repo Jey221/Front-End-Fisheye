@@ -25,7 +25,7 @@ function openListbox(tabMedia) {
     iconActuel.style.setProperty('display', 'none');
     clickListbox(tabMedia);
 }
-function closeListbox(tabMedia) {
+function closeListbox() {
     listbox.style.setProperty('display', 'none');
     listboxOptionActuelle.style.setProperty('display', 'block');
     iconActuel.style.setProperty('display', 'block');
@@ -49,6 +49,24 @@ const clickListbox = (tabMedia) => {
             lightbox.init()
             listenForLikes()
         })
+        listboxOption.addEventListener('keydown', (e) => {
+            listboxOptionActuelle.innerHTML = e.path[0].innerHTML
+            switch (e.key) {
+                case "Enter":
+                    console.log(listboxOptionActuelle.innerHTML);
+                    if (e.path[0].innerHTML === "Popularité") {
+                        popularitySort(tabMedia);
+                    }else if (e.path[0].innerHTML === "Date") {
+                        dateSort(tabMedia);
+                    }else{
+                        titleSort(tabMedia);
+                    } 
+                    displayDataMedia(tabMedia);
+                    lightbox.init()
+                    listenForLikes() 
+                break       
+            }
+        });
     })
 }
 //fonction de tri par Popularité (+ de like à - de like )
@@ -81,18 +99,14 @@ listboxContainer.addEventListener("keydown", function (event){
             break;
         case "Enter":
             openListbox();
-            if (event.path[0].innerHTML === "Popularity") {
-                popularitySort();
-            }else if (event.path[0].innerHTML === "Date") {
-                dateSort();
-            }else{
-                titleSort();
-            }
             break;
-        case "Escape" || "click":
+        case "Escape":
             closeListbox();
             break;
     }
 })                
 
 export {openCloseListbox,popularitySort}
+
+/* 
+ */
