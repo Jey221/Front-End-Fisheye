@@ -2,16 +2,15 @@
 const listenForLikes = () => {    
     const likes = document.querySelectorAll(".likeLabel");
     likes.forEach(like => {
-        like.addEventListener("click", (event) => {
-            console.log(event.target);           
+        like.addEventListener("click", (event) => {//à la souis
             manageLike(event);
         });
-        like.addEventListener("keydown", (event) => {
+        like.addEventListener("keydown", (event) => {//au clavier
             if (event.key==="Enter"){ 
-                console.log(event.target);           
                 manageLike(event);
             };
         });
+        //gestion des likes
         function manageLike(event) {
             let target;
             if (event.target.classList.contains("fa-heart")) {
@@ -19,12 +18,10 @@ const listenForLikes = () => {
             } else {
                 target = like.lastChild
             } 
-            console.log(target);
             const likeEncart = document.getElementById("likeEncart");
             target.classList.toggle('unchecked');
             target.classList.toggle('checked');
             const id = like.getAttribute("for");                
-            //localStorage.setItem(`like${id}`, document.getElementById(`likeCount_${id}`).innerHTML)
             if (target.classList.contains('checked')) {
                 document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)+1;
                 likeEncart.innerHTML = parseInt(likeEncart.innerHTML)+1;
@@ -49,8 +46,6 @@ const listenForLikes = () => {
         sum += numberSpans[i];
     }
     document.getElementById("likeEncart").textContent = sum ;
-    //WIP: MISE EN PLACE DE LA FONCTION DE LIKE AVEC L'UTILISATION DU CLAVIER OU NON
-
 };
 
 export {listenForLikes}
