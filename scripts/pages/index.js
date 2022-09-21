@@ -1,5 +1,6 @@
+//mise en place de la page d'accueil
 import { photographerFactory } from "../factories/photographer.js"
-
+//récupération des données sur la json
 async function getPhotographers() {
     // Penser à remplacer par les données récupérées dans le json
 
@@ -10,7 +11,7 @@ async function getPhotographers() {
     // et bien retourner le tableau photographers seulement une fois
     return ({photographers: [...photographers]})
 }
-
+//mise en place des articles sur la page
 async function displayData(photographers) {    
     const photographersSection = document.querySelector(".photographer_section");// crée une const pour ajouter les articles sur la page
     photographers.forEach((photographer) => {
@@ -19,8 +20,8 @@ async function displayData(photographers) {
         photographersSection.appendChild(userCardDOM);
     });
 };
+// Récupère les datas des photographes
 async function init() {
-    // Récupère les datas des photographes
     const { photographers } = await getPhotographers();
     displayData(photographers);
 };

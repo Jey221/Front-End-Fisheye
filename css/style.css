@@ -64,9 +64,10 @@ h1 {
 
 }
 .prix {
-    font-size: 12px;
+    font-size: 14px;
     color: lightslategrey;
     margin: 0%;
+    font-weight: 900;
 
 }
 .photographer_section article img {

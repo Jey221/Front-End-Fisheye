@@ -1,3 +1,4 @@
+//mise en place des infos et images des photographe sur la pâge d'accueil
 function photographerFactory(data) {
     const { name, portrait, city, country, tagline, price } = data;
     const picture = `assets/photographers/${portrait}`;
@@ -46,13 +47,11 @@ function photographerFactory(data) {
         article.appendChild(pCity);
         pCity.classList.add('ville');
 
-
         //tagline
         const pTagline = document.createElement( 'p' );
         pTagline.textContent = tagline;
         article.appendChild(pTagline);
         pTagline.classList.add('tagline');
-
 
         //prix
         const pPrice = document.createElement( 'p' );

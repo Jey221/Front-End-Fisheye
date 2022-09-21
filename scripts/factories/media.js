@@ -1,4 +1,4 @@
-//mise en place des fonction pour les media sur la page photographers
+//mise en place des fonction pour les medias sur la page photographers
 //IMPORT
 import {openCloseListbox,popularitySort} from '../utils/sort.js'
 import {listenForLikes} from '../utils/like.js'
@@ -21,7 +21,7 @@ async function getMediaPhotographer() {
     return ({tabMedia: [...tabMedia]});
 };
 
-//mise en place d'une fonction pour afficher le contenu
+//mise en place d'une fonction pour afficher la galerie
 async function displayDataMedia(tabMedia) {
     const gallery = document.getElementById('gallery');
     gallery.innerHTML = "";
@@ -41,9 +41,8 @@ async function initMedia() {
 };
 initMedia();
 
-//mise en place d'une fonction pour l'intégration des medias sur la page photographe 
+//mise en place d'une fonction pour l'intégration des medias dans la galerie 
 function mediaFactory(data) {  
-    
     function getPhotographersMedias() { 
         //créer les espaces pour les medias
         const id = data.id
@@ -65,14 +64,12 @@ function mediaFactory(data) {
         let articleMedia;
         if (data.hasOwnProperty('image')) {
             const titlePicture = data.title;
-            //console.log(data);
             articleMedia = document.createElement( 'img' );
             articleMedia.setAttribute("src", `assets/picture/${idPage}/${pictureName}`);
             links.appendChild(articleMedia);
             articleMedia.setAttribute("class", "medias image");
             articleMedia.setAttribute("id", id);
             articleMedia.setAttribute("alt", titlePicture );
-            articleMedia.setAttribute("aria-label", titlePicture );
         }else if (data.hasOwnProperty('video')) {
             const titlePicture = data.title;
             articleMedia = document.createElement('video')
@@ -80,11 +77,9 @@ function mediaFactory(data) {
             links.appendChild(articleMedia);
             articleMedia.setAttribute("class", "medias video");
             articleMedia.setAttribute("alt", titlePicture );
-            articleMedia.setAttribute("aria-label", titlePicture );
             articleMedia.setAttribute("id", id);
         };
-
-        //création du footer
+        //création du pied de page
         const footer = document.createElement( 'footer' );
         footer.setAttribute("class","footerMedias");
         article.appendChild(footer);
@@ -119,6 +114,7 @@ function mediaFactory(data) {
         likeZone.appendChild(likeLabel);
         likeLabel.setAttribute("for", id );
         likeLabel.setAttribute("tabindex", "0");
+        likeLabel.setAttribute("aria-labelby", "like");
         likeLabel.classList.add('likeLabel');
 
         //création d'un Input like   
@@ -126,19 +122,17 @@ function mediaFactory(data) {
         likeLabel.appendChild(likeZoneInput);
         likeZoneInput.setAttribute("id", `like_${id}` );
         likeZoneInput.setAttribute("type", "checkbox");
+        likeZoneInput.setAttribute("aria-labelby", "like");
 
         //mise en place d'un icon coeur   
         const heartCheck = document.createElement( 'i' );
         likeLabel.appendChild(heartCheck);
         heartCheck.setAttribute("class", "fa-solid fa-heart unchecked");
-        heartCheck.setAttribute("aria-label", "likes");
+        heartCheck.setAttribute("role", "likes");
     
         return (article);
     };
     return { getPhotographersMedias}; 
 };
-
-mediaFactory();
-
 
 export {getMediaPhotographer, displayDataMedia, initMedia};

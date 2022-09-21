@@ -1,3 +1,4 @@
+//gestion des tris sur la page des photographes
 //IMPORT
 import { displayDataMedia } from "../factories/media.js";
 import { lightbox } from "./lightbox.js";
@@ -15,7 +16,7 @@ const openCloseListbox = (tabMedia) => {
         }
     }); 
 };
-
+//définition des cibles
 const listboxOptionActuelle = document.getElementById('listboxOptionActuelle');
 const iconActuel = document.getElementById("listboxOptionActuelleIcon")
 
@@ -36,6 +37,7 @@ function closeListbox() {
 const clickListbox = (tabMedia) => {
     const listboxOption = document.querySelectorAll(".listboxOption")
     listboxOption.forEach((listboxOption) => {
+        //écouteur souris
         listboxOption.addEventListener('click', (e) => {
             listboxOptionActuelle.innerHTML = e.path[0].innerHTML
             if (e.path[0].innerHTML === "Popularité") {
@@ -48,7 +50,8 @@ const clickListbox = (tabMedia) => {
             displayDataMedia(tabMedia);
             lightbox.init()
             listenForLikes()
-        })
+        });
+        //écouteur clavier
         listboxOption.addEventListener('keydown', (e) => {
             listboxOptionActuelle.innerHTML = e.path[0].innerHTML
             switch (e.key) {
@@ -82,7 +85,7 @@ const titleSort = (tabMedia) => {
     tabMedia.sort(function (a,b){ return a.title.localeCompare(b.title) });
 };
 
-//mise en place du focus et de la nav clavier sur la listbox de tri WIP:SELECTION VIA LA TOUCHE ENTER
+//mise en place du focus sur la listbox et gestion de l'ouverture/fermeture via clavier
 const  focusableListboxOption = 'div';
 const modalListbox= document.getElementById("options");
 const focusableContent = modalListbox.querySelectorAll(focusableListboxOption);

@@ -1,3 +1,4 @@
+//gestion de la lightbox
 //import des fonctions
 import {getMediaPhotographer} from '../factories/media.js'
 

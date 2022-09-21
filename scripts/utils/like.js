@@ -1,10 +1,13 @@
+//gestion des likes
 //mise en place d'une fonction pour incrémentation et décrémentation des likes
 const listenForLikes = () => {    
     const likes = document.querySelectorAll(".likeLabel");
     likes.forEach(like => {
+        //écouteur souris
         like.addEventListener("click", (event) => {//à la souis
             manageLike(event);
         });
+        //écouteur clavier
         like.addEventListener("keydown", (event) => {//au clavier
             if (event.key==="Enter"){ 
                 manageLike(event);
@@ -14,21 +17,21 @@ const listenForLikes = () => {
         function manageLike(event) {
             let target;
             if (event.target.classList.contains("fa-heart")) {
-                target = event.target 
+                target = event.target;
             } else {
-                target = like.lastChild
-            } 
+                target = like.lastChild;
+            };
             const likeEncart = document.getElementById("likeEncart");
             target.classList.toggle('unchecked');
             target.classList.toggle('checked');
             const id = like.getAttribute("for");                
-            if (target.classList.contains('checked')) {
+            if (target.classList.contains('checked')) {//like +1
                 document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)+1;
                 likeEncart.innerHTML = parseInt(likeEncart.innerHTML)+1;
-            } else {
+            } else {//like -1
                 document.getElementById(`likeCount_${id}`).innerHTML = parseInt(document.getElementById(`likeCount_${id}`).innerHTML)-1;
                 likeEncart.innerHTML = parseInt(likeEncart.innerHTML)-1;
-            }
+            };
         };    
     });
     //calcul de la somme des likes sur la gallerie
@@ -45,7 +48,7 @@ const listenForLikes = () => {
     for (let i = 0; i <numberSpans.length; i++) {
         sum += numberSpans[i];
     }
-    document.getElementById("likeEncart").textContent = sum ;
+    document.getElementById("likeEncart").textContent = sum ;//mise en place du total sur l'encart
 };
 
 export {listenForLikes}

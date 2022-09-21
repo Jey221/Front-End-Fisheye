@@ -1,3 +1,4 @@
+//gestion du formulaire
 // fonction d'ouverture du modal de contact
 function displayModal() {
   const modal = document.getElementById("contact_modal");

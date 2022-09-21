@@ -1,4 +1,5 @@
 //Mettre le code JavaScript lié à la page photographer.html
+//mise en place des infos surr la page photogaphe
 //import des données
 import {getMediaPhotographer, initMedia} from '../factories/media.js'
 
