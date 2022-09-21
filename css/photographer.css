@@ -1,4 +1,5 @@
-/***********************PROFIL DU PHOTOGRAPHE***************************/
+/* mise en forme de la page des photographes */
+/***********************INFO PHOTOGAPHE***************************/
 .photograph-header {
     display: flex;
     align-items: center;
@@ -114,7 +115,6 @@ article {
 .article_media_title {
     font-weight: 400;
     font-size: 19px;
-
 }
 .likeZone {
     display: flex;
@@ -201,9 +201,6 @@ input[type="checkbox"], .likeLabel .checked {
 .listboxOption:nth-child(1) {
     border-radius: 5px 0 0 0;
 }
-
-
-
 /***********************FORMULAIRE DE CONTACT***************************/
 #contact_modal {
     display: none;
