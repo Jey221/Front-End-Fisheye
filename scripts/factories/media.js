@@ -39,7 +39,6 @@ async function initMedia() {
     listenForLikes(tabMedia);
     lightbox.init()
 };
-initMedia();
 
 //mise en place d'une fonction pour l'intégration des medias dans la galerie 
 function mediaFactory(data) {  
