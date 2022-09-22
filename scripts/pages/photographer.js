@@ -35,7 +35,7 @@ async function init() {
     // Récupère les datas des photographes
     const { tabPhotographe } = await getInfosPhotographer();
     displayData(tabPhotographe);
-    getMediaPhotographer()
+    //getMediaPhotographer()
     infoFactory();
     initMedia();
 };

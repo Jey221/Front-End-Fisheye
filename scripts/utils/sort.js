@@ -1,6 +1,6 @@
 //gestion des tris sur la page des photographes
 //IMPORT
-import { displayDataMedia } from "../factories/media.js";
+import { displayDataMedia, getUnorderedMediaPhotographer } from "../factories/media.js";
 import { lightbox } from "./lightbox.js";
 import {listenForLikes} from "./like.js"
 
@@ -53,9 +53,10 @@ const clickListbox = (tabMedia) => {
         });
         //écouteur clavier
         listboxOption.addEventListener('keydown', (e) => {
-            listboxOptionActuelle.innerHTML = e.path[0].innerHTML
             switch (e.key) {
                 case "Enter":
+                    const text = e.path[0].innerHTML;
+                    listboxOptionActuelle.innerHTML = e.path[0].innerHTML
                     console.log(listboxOptionActuelle.innerHTML);
                     if (e.path[0].innerHTML === "Popularité") {
                         popularitySort(tabMedia);
@@ -65,8 +66,11 @@ const clickListbox = (tabMedia) => {
                         titleSort(tabMedia);
                     } 
                     displayDataMedia(tabMedia);
+                    closeListbox(tabMedia);
                     lightbox.init()
                     listenForLikes() 
+                    e.target.parentNode.replaceWith(e.target.parentNode.cloneNode(true));
+                    Array.from(document.querySelector('#options').children).find(elt => elt.textContent === e.target.textContent).focus()
                 break       
             }
         });
@@ -91,7 +95,7 @@ const modalListbox= document.getElementById("options");
 const focusableContent = modalListbox.querySelectorAll(focusableListboxOption);
 const firstFocusableListboxOption = focusableContent[0];
 const lastFocusableListboxOption = focusableContent[focusableContent.length - 1];
-
+const medias = await getUnorderedMediaPhotographer();
 listboxContainer.addEventListener("keydown", function (event){
     switch (event.key) {
         case "Tab":
@@ -101,7 +105,7 @@ listboxContainer.addEventListener("keydown", function (event){
             };
             break;
         case "Enter":
-            openListbox();
+            openListbox(medias);
             break;
         case "Escape":
             closeListbox();
@@ -109,7 +113,4 @@ listboxContainer.addEventListener("keydown", function (event){
     }
 })                
 
-export {openCloseListbox,popularitySort}
-
-/* 
- */
+export {openCloseListbox,popularitySort};

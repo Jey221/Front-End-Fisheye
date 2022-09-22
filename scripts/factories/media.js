@@ -21,6 +21,18 @@ async function getMediaPhotographer() {
     return ({tabMedia: [...tabMedia]});
 };
 
+async function getUnorderedMediaPhotographer() {
+    const idPage = window.location.search.split("?id=").join("");
+    let response = await fetch("data/photographers.json");
+    let data = await response.json();
+    let media = await data.media;
+    //filtre pour avoir medias du photographe sur la page
+    const tabMedia = media.filter(value => {
+        if( value.photographerId == parseInt(idPage,10) ) return true;
+    });
+    return ([...tabMedia]);
+};
+
 //mise en place d'une fonction pour afficher la galerie
 async function displayDataMedia(tabMedia) {
     const gallery = document.getElementById('gallery');
@@ -134,4 +146,4 @@ function mediaFactory(data) {
     return { getPhotographersMedias}; 
 };
 
-export {getMediaPhotographer, displayDataMedia, initMedia};
+export {getMediaPhotographer, displayDataMedia, initMedia, getUnorderedMediaPhotographer};

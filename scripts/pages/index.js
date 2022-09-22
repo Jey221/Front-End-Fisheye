@@ -3,7 +3,6 @@ import { photographerFactory } from "../factories/photographer.js"
 //récupération des données sur la json
 async function getPhotographers() {
     // Penser à remplacer par les données récupérées dans le json
-
     let response = await fetch("data/photographers.json");
     let data = await response.json();
     let photographers = await data.photographers;
