@@ -119,6 +119,7 @@ article {
 .likeZone {
     display: flex;
     align-items: center;
+    gap: 9%;
 }
 .heartZone {
     width: 25px;

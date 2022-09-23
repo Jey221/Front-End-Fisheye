@@ -1,7 +1,7 @@
 //Mettre le code JavaScript lié à la page photographer.html
 //mise en place des infos surr la page photogaphe
 //import des données
-import {getMediaPhotographer, initMedia} from '../factories/media.js'
+import {getMediaPhotographer, initMedia} from '../factories/media.js';
 
 //création d'une constante correspondante a l'URL
 const idPage = window.location.search.split("?id=").join("");
@@ -25,7 +25,7 @@ async function displayData(tabPhotographe) {
     tabPhotographe.forEach((tabPhotographe) => {
         const photographerModel = infoFactory(tabPhotographe);
         const userCardDOM = photographerModel.getPhotographersInfos();
-        const buttonForm = document.querySelector('.contact_button')  
+        const buttonForm = document.querySelector('.contact_button');
         profil.insertBefore(userCardDOM , buttonForm);
     });
 
@@ -35,7 +35,6 @@ async function init() {
     // Récupère les datas des photographes
     const { tabPhotographe } = await getInfosPhotographer();
     displayData(tabPhotographe);
-    //getMediaPhotographer()
     infoFactory();
     initMedia();
 };
@@ -47,7 +46,7 @@ function infoFactory(data) {
 
         //selectionner l'espace du profil photographe
         const profil = document.getElementById('photographer-profil');
-        const buttonForm = document.querySelector('.contact_button')
+        const buttonForm = document.querySelector('.contact_button');
 
         //créer une div pour les info du photographe
         const infoPhotographe = document.createElement( 'div' );

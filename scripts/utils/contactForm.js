@@ -3,8 +3,8 @@
 function displayModal() {
   const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
-  modal.setAttribute("aria-hidden", "false")
-  document.getElementById("main").setAttribute("aria-hidden", "true")
+  modal.setAttribute("aria-hidden", "false");
+  document.getElementById("main").setAttribute("aria-hidden", "true");
   firstFocusableElement.focus();  
 }
 
@@ -12,8 +12,8 @@ function displayModal() {
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
-    modal.setAttribute("aria-hidden", "true")
-    document.getElementById("main").setAttribute("aria-hidden", "false")
+    modal.setAttribute("aria-hidden", "true");
+    document.getElementById("main").setAttribute("aria-hidden", "false");
 }
 // fonction de fermeture du modal de contact avec touche Echap
 document.addEventListener('keydown', function(e) {

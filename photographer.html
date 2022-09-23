@@ -20,7 +20,7 @@
       <!--menu de tri-->
       <nav id="sortArea" aria-label="menu pour trier la galerie">
         <label id="listboxLabel" for="listboxContainer">Trier par
-          <div id="listboxContainer" role="button" aria-haspopup="listbox" tabindex="0" aria-expanded="false"aria-haspopup="true">
+          <div id="listboxContainer" role="button" aria-haspopup="listbox" tabindex="0" aria-expanded="false" aria-haspopup="true">
             <span id="listboxOptionActuelle">Popularité</span><span id="listboxOptionActuelleIcon"><i class="fa-solid fa-angle-down" aria-hidden="true"></i></span>
             <div role="listbox" id="listbox" aria-label="liste des options">
               <span><i class="fa-solid fa-angle-up" aria-hidden="true"></i></span>
@@ -39,9 +39,9 @@
       </section>
     </main>
     <!--Formulaire de contact-->
-    <div id="contact_modal" tabindex="-1" role="dialog" aria-describedby="modalFormulaire">
+    <div id="contact_modal" tabindex="-1" role="dialog" aria-describedby="modalFormulaire" aria-label="formulaire de contact">
 			<div class="modal">
-				<header>
+				<header aria-label="en-tête du formulaire">
           <h2 id="titreModalContact" tabindex="0"></h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" alt="fermer le formulaire" aria-label="fermeture du formulaire" tabindex="0" role="button"/>
         </header>

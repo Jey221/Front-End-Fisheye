@@ -48,7 +48,7 @@ const listenForLikes = () => {
     for (let i = 0; i <numberSpans.length; i++) {
         sum += numberSpans[i];
     }
-    document.getElementById("likeEncart").textContent = sum ;//mise en place du total sur l'encart
+    document.getElementById("likeEncart").textContent = sum;//mise en place du total sur l'encart
 };
 
 export {listenForLikes}

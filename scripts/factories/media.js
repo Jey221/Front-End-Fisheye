@@ -1,7 +1,7 @@
 //mise en place des fonction pour les medias sur la page photographers
 //IMPORT
-import {openCloseListbox,popularitySort} from '../utils/sort.js'
-import {listenForLikes} from '../utils/like.js'
+import {openCloseListbox,popularitySort} from '../utils/sort.js';
+import {listenForLikes} from '../utils/like.js';
 import { lightbox } from "../utils/lightbox.js";
 
 //création d'une constante correspondante a l'id du photographe affiché
@@ -49,14 +49,14 @@ async function initMedia() {
     const { tabMedia } = await getMediaPhotographer();
     displayDataMedia(tabMedia);
     listenForLikes(tabMedia);
-    lightbox.init()
+    lightbox.init();
 };
 
 //mise en place d'une fonction pour l'intégration des medias dans la galerie 
 function mediaFactory(data) {  
     function getPhotographersMedias() { 
         //créer les espaces pour les medias
-        const id = data.id
+        const id = data.id;
         const gallery = document.getElementById('gallery');
         const article = document.createElement( 'article' );
         article.setAttribute("id",`article-${id}`);
@@ -67,10 +67,10 @@ function mediaFactory(data) {
         const pictureName = data.image;
         const videoName = data.video;
         card.setAttribute("class","cardMedia");
-        links.setAttribute("href",`assets/picture/${idPage}/${videoName || pictureName}`)
+        links.setAttribute("href",`assets/picture/${idPage}/${videoName || pictureName}`);
         links.setAttribute("aria-label", `Ouverture de la lightbox avec le media ${videoName || pictureName}` );
         article.appendChild(card);
-        card.appendChild(links)
+        card.appendChild(links);
         //intégrer le media
         let articleMedia;
         if (data.hasOwnProperty('image')) {
@@ -117,7 +117,7 @@ function mediaFactory(data) {
         likeZone.appendChild(likeCount);
         likeCount.setAttribute("class", "likeCount");
         likeCount.setAttribute("id", `likeCount_${id}`);
-        localStorage.setItem(`like${id}`,data.likes)
+        localStorage.setItem(`like${id}`,data.likes);
         likeCount.innerText = parseInt(localStorage.getItem(`like${id}`));
 
         //création d'un label like 
@@ -125,7 +125,7 @@ function mediaFactory(data) {
         likeZone.appendChild(likeLabel);
         likeLabel.setAttribute("for", id );
         likeLabel.setAttribute("tabindex", "0");
-        likeLabel.setAttribute("aria-labelby", "like");
+        likeLabel.setAttribute("aria-label", "like");
         likeLabel.classList.add('likeLabel');
 
         //création d'un Input like   
@@ -139,7 +139,9 @@ function mediaFactory(data) {
         const heartCheck = document.createElement( 'i' );
         likeLabel.appendChild(heartCheck);
         heartCheck.setAttribute("class", "fa-solid fa-heart unchecked");
-        heartCheck.setAttribute("role", "likes");
+        heartCheck.setAttribute("role", "button");
+        heartCheck.setAttribute("aria-label", "button coeur");
+        
     
         return (article);
     };
