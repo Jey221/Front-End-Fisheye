@@ -75,13 +75,12 @@ const clickListbox = (tabMedia) => {
                         dateSort(tabMedia);
                     }else{
                         titleSort(tabMedia);
-                    } 
+                    }
                     displayDataMedia(tabMedia);
                     lightbox.init();
                     listenForLikes();
                     e.target.parentNode.replaceWith(e.target.parentNode.cloneNode(true));
                     Array.from(document.querySelector('#options').children).find(elt => elt.textContent === e.target.textContent).focus();
-                    closeListbox(tabMedia);
                 break       
             };
         });
