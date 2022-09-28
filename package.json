@@ -1,5 +1,5 @@
 {
-  "name": "FrontEndFisheye",
+  "name": "front-end-fisheye",
   "version": "1.0.0",
   "description": "Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.",
   "main": "index.js",
@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/Jey221/Front-End-Fisheye/issues"
   },
-  "homepage": "https://github.com/Jey221/Front-End-Fisheye#readme"
+  "homepage": "https://github.com/Jey221/Front-End-Fisheye#readme",
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  },
+  "dependencies": {}
 }
