@@ -1,33 +1,9 @@
 // mise en place des fonction pour les medias sur la page photographers
-// IMPORT
-import { openCloseListbox, popularitySort } from '../utils/sort.js';
-import { listenForLikes } from '../utils/like.js';
-import { lightbox } from '../utils/lightbox.js';
-import { getMediaPhotographer } from '../utils/function.js';
-
 // création d'une constante correspondante a l'id du photographe affiché
-const idPage = window.location.search.split('?id=').join('');
-// mise en place d'une fonction pour afficher la galerie
-async function displayDataMedia(tabMedia) {
-  const gallery = document.getElementById('gallery');
-  gallery.innerHTML = '';
-  tabMedia.forEach(() => {
-    const photographerModel = mediaFactory(tabMedia);
-    const userCardDOM = photographerModel.getPhotographersMedias(tabMedia);
-    gallery.appendChild(userCardDOM);
-  });
-}
-
-async function initMedia() {
-  // Récupère les datas des photographes
-  const { tabMedia } = await getMediaPhotographer();
-  displayDataMedia(tabMedia);
-  listenForLikes(tabMedia);
-  lightbox.init();
-}
+// const idPage = window.location.search.split('?id=').join('');
 
 // mise en place d'une fonction pour l'intégration des medias dans la galerie
-function mediaFactory(data) {
+function mediaFactory(data, idPage) {
   function getPhotographersMedias() {
     // créer les espaces pour les medias
     const { id } = data;
@@ -47,7 +23,7 @@ function mediaFactory(data) {
     card.appendChild(links);
     // intégrer le media
     let articleMedia;
-    if (data.hasOwnProperty('image')) {
+    if (data.prototype.hasOwnProperty.call('image')) {
       const titlePicture = data.title;
       articleMedia = document.createElement('img');
       articleMedia.setAttribute('src', `assets/picture/${idPage}/${pictureName}`);
@@ -55,7 +31,7 @@ function mediaFactory(data) {
       articleMedia.setAttribute('class', 'medias image');
       articleMedia.setAttribute('id', id);
       articleMedia.setAttribute('alt', titlePicture);
-    } else if (data.hasOwnProperty('video')) {
+    } else if (data.prototype.hasOwnProperty.call('video')) {
       const titlePicture = data.title;
       articleMedia = document.createElement('video');
       articleMedia.setAttribute('src', `assets/picture/${idPage}/${videoName}`);
@@ -92,7 +68,7 @@ function mediaFactory(data) {
     likeCount.setAttribute('class', 'likeCount');
     likeCount.setAttribute('id', `likeCount_${id}`);
     localStorage.setItem(`like${id}`, data.likes);
-    likeCount.innerText = parseInt(localStorage.getItem(`like${id}`));
+    likeCount.innerText = parseInt(localStorage.getItem(`like${id}`), 10);
 
     // création d'un label like
     const likeLabel = document.createElement('label');
@@ -121,4 +97,13 @@ function mediaFactory(data) {
   return { getPhotographersMedias };
 }
 
-export { initMedia };
+// mise en place d'une fonction pour afficher la galerie
+export default async function displayDataMedia(tabMedia) {
+  const gallery = document.getElementById('gallery');
+  gallery.innerHTML = '';
+  tabMedia.forEach(() => {
+    const photographerModel = mediaFactory(tabMedia);
+    const userCardDOM = photographerModel.getPhotographersMedias(tabMedia);
+    gallery.appendChild(userCardDOM);
+  });
+}

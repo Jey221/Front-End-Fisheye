@@ -1,5 +1,7 @@
 // mise en place de la page d'accueil
-import { photographerFactory } from '../factories/photographer.js';
+// eslint-disable-next-line import/extensions
+import photographerFactory from '../factories/photographer.js';
+
 // récupération des données sur la json
 async function getPhotographers() {
   // Penser à remplacer par les données récupérées dans le json

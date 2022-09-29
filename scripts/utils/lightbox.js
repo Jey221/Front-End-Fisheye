@@ -1,10 +1,10 @@
 // gestion de la lightbox
-import { getMediaPhotographer } from './function.js';
+// import { getMediaPhotographer } from './function';
 
 // récupération des datas
 const idPage = window.location.search.split('?id=').join('');
-const promise = getMediaPhotographer(idPage);
-const data = await promise.catch(() => false);
+/* const promise = getMediaPhotographer(idPage);
+const data = await promise.catch(() => false); */
 
 // création de la classe lightbox
 class lightbox {
@@ -13,7 +13,7 @@ class lightbox {
     const gallery = links.map((link) => link.getAttribute('href'));
     links.forEach((link) => link.addEventListener('click', (e) => {
       e.preventDefault();
-      new lightbox(e.currentTarget.getAttribute('href'), gallery);
+      lightbox(e.currentTarget.getAttribute('href'), gallery);
     }));
   }
 
@@ -85,7 +85,7 @@ class lightbox {
   // fonction suivante
   next(e) {
     e.preventDefault();
-    let i = this.gallery.findIndex((i) => i === this.url);// définition de la position du click
+    let i = this.gallery.findIndex(() => i === this.url);// définition de la position du click
     if (i === this.gallery.length - 1) {
       i = -1;
     }
@@ -95,7 +95,7 @@ class lightbox {
   // fonction précédente
   prev(e) {
     e.preventDefault();
-    let i = this.gallery.findIndex((i) => i === this.url);// définition de la position du click
+    let i = this.gallery.findIndex(() => i === this.url);// définition de la position du click
     if (i === 0) {
       i = this.gallery.length - 1;
     }
@@ -103,7 +103,7 @@ class lightbox {
   }
 
   // crétion des elements HTML pour la Lightbox
-  buildDOM(url) {
+  buildDOM() {
     const dom = document.createElement('div');
     dom.classList.add('lightbox');
     dom.setAttribute('id', 'lightbox');
@@ -128,4 +128,4 @@ class lightbox {
 }
 
 lightbox.init();
-export { lightbox };
+export default { lightbox };

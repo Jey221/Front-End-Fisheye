@@ -1,7 +1,15 @@
+/* eslint-disable no-console */
 // gestion du formulaire
+// mise en place du focus sur le formulaire
+const focusableElements = 'button, label, input, textarea, [tabindex]:not([tabindex="-1"])';// séléction des cibles du focus
+const modal = document.querySelector('#contact_modal');
+const focusableContent = modal.querySelectorAll(focusableElements);
+const firstFocusableElement = focusableContent[0]; // premier élément focusable
+const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
 // fonction d'ouverture du modal de contact
+// eslint-disable-next-line no-unused-vars
 function displayModal() {
-  const modal = document.getElementById('contact_modal');
   modal.style.display = 'block';
   modal.setAttribute('aria-hidden', 'false');
   document.getElementById('main').setAttribute('aria-hidden', 'true');
@@ -10,7 +18,6 @@ function displayModal() {
 
 // fonction de fermeture du modal de contact
 function closeModal() {
-  const modal = document.getElementById('contact_modal');
   modal.style.display = 'none';
   modal.setAttribute('aria-hidden', 'true');
   document.getElementById('main').setAttribute('aria-hidden', 'false');
@@ -22,13 +29,6 @@ document.addEventListener('keydown', (e) => {
     closeModal();
   }
 });
-
-// mise en place du focus sur le formulaire
-const focusableElements = 'button, label, input, textarea, [tabindex]:not([tabindex="-1"])';// séléction des cibles du focus
-const modal = document.querySelector('#contact_modal');
-const focusableContent = modal.querySelectorAll(focusableElements);
-const firstFocusableElement = focusableContent[0]; // premier élément focusable
-const lastFocusableElement = focusableContent[focusableContent.length - 1]; // dernier élément focusable
 
 // gestion de la nav sur le formulaie avec la touche tab
 document.addEventListener('keydown', (e) => {
@@ -42,11 +42,9 @@ document.addEventListener('keydown', (e) => {
       lastFocusableElement.focus(); // focus sur le dernier element si passe le premier element
       e.preventDefault();
     }
-  } else { // defilement dans l'ordre avec la touche tab
-    if (document.activeElement === lastFocusableElement) {
-      firstFocusableElement.focus(); // focus sur le premier element si passe le dernier element
-      e.preventDefault();
-    }
+  } else if (document.activeElement === lastFocusableElement) {
+    firstFocusableElement.focus(); // focus sur le premier element si passe le dernier element
+    e.preventDefault();
   }
 });
 
@@ -75,8 +73,7 @@ document.getElementById('boutonEnvoyer').addEventListener('click', (e) => {
   } else {
     smallFirst.innerHTML = '';
     firstName.classList.remove('error');
-    var valueFirstName = firstName.value;
-    var valid = true;
+    const valid = true;
   }
 
   // validation nom et création si valide de la variables valid1
@@ -87,12 +84,11 @@ document.getElementById('boutonEnvoyer').addEventListener('click', (e) => {
   } else {
     lastName.classList.remove('error');
     smallLast.innerHTML = '';
-    var valueLastName = lastName.value;
-    var valid1 = true;
+    const valid1 = true;
   }
 
   // validation email et création si valide de la variables valid2
-  if (email.value == '') {
+  if (email.value === '') {
     email.classList.add('error');
     smallEmail.innerHTML = 'Vous devez entrer une adresse email valide.';
     email.focus();
@@ -107,8 +103,7 @@ document.getElementById('boutonEnvoyer').addEventListener('click', (e) => {
   } else {
     email.classList.remove('error');
     smallEmail.innerHTML = '';
-    var valueEmail = email.value;
-    var valid2 = true;
+    const valid2 = true;
   }
 
   // validation message et création si valide de la variables valid3
@@ -119,15 +114,14 @@ document.getElementById('boutonEnvoyer').addEventListener('click', (e) => {
   } else {
     smallMessage.innerHTML = '';
     message.classList.remove('error');
-    var valueMessage = message.value;
-    var valid3 = true;
+    const valid3 = true;
   }
 
   // envoi des infos dans la console
-  if (valid == true && valid1 == true && valid2 == true && valid3 == true) {
-    console.log(`prénom = ${valueFirstName}`);
-    console.log(`nom = ${valueLastName}`);
-    console.log(`email = ${valueEmail}`);
-    console.log(`message = ${valueMessage}`);
+  if (valid === true && valid1 === true && valid2 === true && valid3 === true) {
+    console.log(`prénom = ${firstName.value}`);
+    console.log(`nom = ${lastName.value}`);
+    console.log(`email = ${email.value}`);
+    console.log(`message = ${message.value}`);
   }
 });

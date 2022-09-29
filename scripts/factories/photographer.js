@@ -1,5 +1,5 @@
 // mise en place des infos et images des photographe sur la pâge d'accueil
-function photographerFactory(data) {
+export default function photographerFactory(data) {
   const {
     name, portrait, city, country, tagline, price,
   } = data;
@@ -64,5 +64,3 @@ function photographerFactory(data) {
   }
   return { getUserCardDOM };
 }
-
-export { photographerFactory };
