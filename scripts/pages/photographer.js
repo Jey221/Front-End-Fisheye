@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 // Mettre le code JavaScript lié à la page photographer.html
 // mise en place des infos surr la page photogaphe
 // import des données
