@@ -14,8 +14,9 @@ async function initMedia() {
   // Récupère les datas des photographes
   const { tabMedia } = await getMediaPhotographer();
   displayDataMedia(tabMedia);
-  listenForLikes(tabMedia);
-  lightbox.init();
+  listenForLikes;
+  lightbox.init;
+  console.log(getMediaPhotographer());
 }
 
 // mise en place d'une fonction pour recupèrer infos du json
