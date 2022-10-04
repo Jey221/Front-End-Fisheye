@@ -2,6 +2,8 @@
 // mise en place d'une fonction pour incrémentation et décrémentation des likes
 const listenForLikes = () => {
   const likes = document.querySelectorAll('.likeLabel');
+  const likeEncart = document.getElementById('likeEncart');
+
   likes.forEach((like) => {
     // gestion des likes
     function manageLike(event) {
@@ -11,7 +13,7 @@ const listenForLikes = () => {
       } else {
         target = like.lastChild;
       }
-      const likeEncart = document.getElementById('likeEncart');
+      // const likeEncart = document.getElementById('likeEncart');
       target.classList.toggle('unchecked');
       target.classList.toggle('checked');
       const id = like.getAttribute('for');
@@ -51,4 +53,4 @@ const listenForLikes = () => {
   document.getElementById('likeEncart').textContent = sum;// mise en place du total sur l'encart
 };
 
-export default { listenForLikes };
+export default listenForLikes;

@@ -3,7 +3,7 @@
 // const idPage = window.location.search.split('?id=').join('');
 
 // mise en place d'une fonction pour l'intégration des medias dans la galerie
-function mediaFactory(data, idPage) {
+export default function mediaFactory(data, idPage) {
   function getPhotographersMedias() {
     // créer les espaces pour les medias
     const { id } = data;
@@ -61,7 +61,6 @@ function mediaFactory(data, idPage) {
     const likeZone = document.createElement('div');
     footer.appendChild(likeZone);
     likeZone.setAttribute('class', 'likeZone');
-    console.log('hi');
     // compteur de like
     const likeCount = document.createElement('span');
     likeZone.appendChild(likeCount);
@@ -96,16 +95,3 @@ function mediaFactory(data, idPage) {
   }
   return { getPhotographersMedias };
 }
-
-// mise en place d'une fonction pour afficher la galerie
-export default async function displayDataMedia(tabMedia) {
-  const gallery = document.getElementById('gallery');
-  gallery.innerHTML = '';
-  console.log(mediaFactory);
-  tabMedia.forEach(() => {
-    const photographerModel = mediaFactory(tabMedia);
-    const userCardDOM = photographerModel.getPhotographersMedias(tabMedia);
-    gallery.appendChild(userCardDOM);
-  });
-}
-console.log(displayDataMedia());

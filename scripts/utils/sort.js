@@ -112,7 +112,6 @@ async function getUnorderedMediaPhotographer() {
   const media = await data.media;
   // filtre pour avoir medias du photographe sur la page
   const tabMedia = media.filter((value) => value.photographerId === parseInt(idPage, 10));
-  console.log(tabMedia);
   return ([...tabMedia]);
 }
 
