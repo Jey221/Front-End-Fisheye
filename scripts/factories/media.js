@@ -3,7 +3,7 @@
 // const idPage = window.location.search.split('?id=').join('');
 
 // mise en place d'une fonction pour l'intégration des medias dans la galerie
-export default function mediaFactory(data, idPage) {
+function mediaFactory(data, idPage) {
   function getPhotographersMedias() {
     // créer les espaces pour les medias
     const { id } = data;
@@ -23,7 +23,7 @@ export default function mediaFactory(data, idPage) {
     card.appendChild(links);
     // intégrer le media
     let articleMedia;
-    if (data.prototype.hasOwnProperty.call('image')) {
+    if (data.image) {
       const titlePicture = data.title;
       articleMedia = document.createElement('img');
       articleMedia.setAttribute('src', `assets/picture/${idPage}/${pictureName}`);
@@ -31,7 +31,7 @@ export default function mediaFactory(data, idPage) {
       articleMedia.setAttribute('class', 'medias image');
       articleMedia.setAttribute('id', id);
       articleMedia.setAttribute('alt', titlePicture);
-    } else if (data.prototype.hasOwnProperty.call('video')) {
+    } else if (data.video) {
       const titlePicture = data.title;
       articleMedia = document.createElement('video');
       articleMedia.setAttribute('src', `assets/picture/${idPage}/${videoName}`);
@@ -71,7 +71,7 @@ export default function mediaFactory(data, idPage) {
 
     // création d'un label like
     const likeLabel = document.createElement('label');
-    likeZone.appendChild(likeLabel);
+    // likeZone.appendChild(likeLabel);
     likeLabel.setAttribute('for', id);
     likeLabel.setAttribute('tabindex', '0');
     likeLabel.setAttribute('aria-label', 'like');
@@ -79,14 +79,14 @@ export default function mediaFactory(data, idPage) {
 
     // création d'un Input like
     const likeZoneInput = document.createElement('input');
-    likeLabel.appendChild(likeZoneInput);
+    likeZone.appendChild(likeZoneInput);
     likeZoneInput.setAttribute('id', `like_${id}`);
     likeZoneInput.setAttribute('type', 'checkbox');
-    likeZoneInput.setAttribute('aria-labelby', 'like');
+    likeZoneInput.setAttribute('aria-label', 'cliquer pou liker');
 
     // mise en place d'un icon coeur
     const heartCheck = document.createElement('i');
-    likeLabel.appendChild(heartCheck);
+    likeZone.appendChild(heartCheck);
     heartCheck.setAttribute('class', 'fa-solid fa-heart unchecked');
     heartCheck.setAttribute('role', 'button');
     heartCheck.setAttribute('aria-label', 'button coeur');
@@ -94,4 +94,15 @@ export default function mediaFactory(data, idPage) {
     return (article);
   }
   return { getPhotographersMedias };
+}
+
+// mise en place d'une fonction pour afficher la galerie
+export default async function displayDataMedia(tabMedia, idPage) {
+  const gallery = document.getElementById('gallery');
+  gallery.innerHTML = '';
+  tabMedia.forEach((media) => {
+    const photographerModel = mediaFactory(media, idPage);
+    const userCardDOM = photographerModel.getPhotographersMedias(media);
+    gallery.appendChild(userCardDOM);
+  });
 }

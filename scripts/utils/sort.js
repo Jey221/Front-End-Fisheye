@@ -25,11 +25,11 @@ const titleSort = (tabMedia) => {
 };
 
 // option de la listbox
-const clickListbox = (tabMedia) => {
+const clickListbox = (tabMedia, idPage) => {
   const listboxOption = document.querySelectorAll('.listboxOption');
-  listboxOption.forEach(() => {
+  listboxOption.forEach((option) => {
     // écouteur souris
-    listboxOption.addEventListener('click', (e) => {
+    option.addEventListener('click', (e) => {
       listboxOptionActuelle.innerHTML = e.path[0].innerHTML;
       if (e.path[0].innerHTML === 'Popularité') {
         popularitySort(tabMedia);
@@ -38,12 +38,13 @@ const clickListbox = (tabMedia) => {
       } else {
         titleSort(tabMedia);
       }
-      displayDataMedia(tabMedia);
+      displayDataMedia(tabMedia, idPage);
       lightbox.init();
       listenForLikes();
     });
     // écouteur clavier
-    listboxOption.addEventListener('keydown', (e) => {
+    option.addEventListener('keydown', (e) => {
+      // mise en place du focus sur la listbox et gestion de l'ouverture/fermeture via clavier
       const focusableListboxOption = 'div';
       const modalListbox = document.getElementById('options');
       const focusableContent = modalListbox.querySelectorAll(focusableListboxOption);
@@ -51,7 +52,6 @@ const clickListbox = (tabMedia) => {
       const lastFocusableListboxOption = focusableContent[focusableContent.length - 1];
       switch (e.key) {
         case 'Tab':
-          // mise en place du focus sur la listbox et gestion de l'ouverture/fermeture via clavier
           if (document.activeElement === lastFocusableListboxOption) {
             firstFocusableListboxOption.focus();
             e.preventDefault();
@@ -66,7 +66,7 @@ const clickListbox = (tabMedia) => {
           } else {
             titleSort(tabMedia);
           }
-          displayDataMedia(tabMedia);
+          displayDataMedia(tabMedia, idPage);
           lightbox.init();
           listenForLikes();
           e.target.parentNode.replaceWith(e.target.parentNode.cloneNode(true));
@@ -79,12 +79,12 @@ const clickListbox = (tabMedia) => {
   });
 };
 
-function openListbox(tabMedia) {
+function openListbox(tabMedia, idPage) {
   listboxContainer.setAttribute('aria-expanded', 'true');
   listbox.style.setProperty('display', 'flex');
   listboxOptionActuelle.style.setProperty('display', 'none');
   iconActuel.style.setProperty('display', 'none');
-  clickListbox(tabMedia);
+  clickListbox(tabMedia, idPage);
 }
 function closeListbox() {
   listboxContainer.setAttribute('aria-expanded', 'false');
@@ -94,10 +94,10 @@ function closeListbox() {
 }
 
 // fonction pour l'ouverture de la listbox pour le tri
-const openCloseListbox = (tabMedia) => {
+const openCloseListbox = (tabMedia, idPage) => {
   listboxContainer.addEventListener('click', () => {
     if (window.getComputedStyle(listbox).display === 'none') {
-      openListbox(tabMedia);
+      openListbox(tabMedia, idPage);
     } else {
       closeListbox(tabMedia);
     }

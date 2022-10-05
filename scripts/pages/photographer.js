@@ -2,13 +2,22 @@
 // Mettre le code JavaScript lié à la page photographer.html
 // mise en place des infos surr la page photogaphe
 // import des données
-import { getMediaPhotographer, displayDataMedia } from '../utils/function.js';
 import infoFactory from '../factories/info.js';
 import listenForLikes from '../utils/like.js';
 import lightbox from '../utils/lightbox.js';
+import getMediaPhotographer from '../utils/function.js';
+import displayDataMedia from '../factories/media.js';
 
 // création d'une constante correspondante a l'URL
-// const idPage = window.location.search.split('?id=').join('');
+const id = parseInt(window.location.search.split('?id=').join(''), 10);
+
+async function initMedia(idPage) {
+  // Récupère les datas des photographes
+  const tabMedia = await getMediaPhotographer(idPage);
+  displayDataMedia(tabMedia, idPage);
+  listenForLikes();
+  lightbox.init();
+}
 
 // mise en place d'une fonction pour recupèrer infos du json
 async function getInfosPhotographer(idPage) {
@@ -16,33 +25,23 @@ async function getInfosPhotographer(idPage) {
   const data = await response.json();
   const photographers = await data.photographers;
   // filtre pour avoir infos du photographe sur la page
-  const tabPhotographe = photographers.filter((value) => value.id === idPage);
-  return ({ tabPhotographe: [...tabPhotographe] });
+  const photographer = photographers.find((value) => value.id === idPage);
+  return photographer;
 }
 
 // mise en place d'une fonction pour afficher le contenu
-async function displayData(tabPhotographe) {
+async function displayData(photographer) {
   const profil = document.getElementById('photographer-profil');
-  tabPhotographe.forEach(() => {
-    const photographerModel = infoFactory(tabPhotographe);
-    const userCardDOM = photographerModel.getPhotographersInfos();
-    const buttonForm = document.querySelector('.contact_button');
-    profil.insertBefore(userCardDOM, buttonForm);
-  });
-}
-async function initMedia(idPage) {
-  // Récupère les datas des photographes
-  const { tabMedia } = await getMediaPhotographer(idPage);
-  displayDataMedia(tabMedia);
-  listenForLikes();
-  lightbox.init();
+  const photographerModel = infoFactory(photographer);
+  const userCardDOM = photographerModel.getPhotographersInfos();
+  const buttonForm = document.querySelector('.contact_button');
+  profil.insertBefore(userCardDOM, buttonForm);
 }
 
-async function init(data, idPage) {
+async function init(idPage) {
   // Récupère les datas des photographes
-  const { tabPhotographe } = await getInfosPhotographer(data);
-  displayData(tabPhotographe);
-  infoFactory(data);
+  const photographer = await getInfosPhotographer(idPage);
+  displayData(photographer);
   initMedia(idPage);
 }
-init();
+init(id);

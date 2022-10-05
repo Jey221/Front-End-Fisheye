@@ -7,13 +7,14 @@ const idPage = window.location.search.split('?id=').join('');
 const data = await promise.catch(() => false); */
 
 // création de la classe lightbox
-class lightbox {
+class Lightbox {
   static init() {
     const links = Array.from(document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]'));
     const gallery = links.map((link) => link.getAttribute('href'));
     links.forEach((link) => link.addEventListener('click', (e) => {
       e.preventDefault();
-      lightbox(e.currentTarget.getAttribute('href'), gallery);
+      // eslint-disable-next-line no-new
+      new Lightbox(e.currentTarget.getAttribute('href'), gallery);
     }));
   }
 
@@ -85,21 +86,21 @@ class lightbox {
   // fonction suivante
   next(e) {
     e.preventDefault();
-    let i = this.gallery.findIndex(() => i === this.url);// définition de la position du click
-    if (i === this.gallery.length - 1) {
-      i = -1;
+    let index = this.gallery.findIndex((i) => i === this.url);// définition de la position du click
+    if (index === this.gallery.length - 1) {
+      index = -1;
     }
-    this.loadImage(this.gallery[i + 1]);
+    this.loadImage(this.gallery[index + 1]);
   }
 
   // fonction précédente
   prev(e) {
     e.preventDefault();
-    let i = this.gallery.findIndex(() => i === this.url);// définition de la position du click
-    if (i === 0) {
-      i = this.gallery.length - 1;
+    let index = this.gallery.findIndex((i) => i === this.url);// définition de la position du click
+    if (index === 0) {
+      index = this.gallery.length - 1;
     }
-    this.loadImage(this.gallery[i - 1]);
+    this.loadImage(this.gallery[index - 1]);
   }
 
   // crétion des elements HTML pour la Lightbox
@@ -127,5 +128,4 @@ class lightbox {
   }
 }
 
-lightbox.init();
-export default { lightbox };
+export default Lightbox;
