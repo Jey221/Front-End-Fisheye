@@ -128,4 +128,4 @@ class lightbox {
 }
 
 lightbox.init();
-export default { lightbox };
+export default lightbox;

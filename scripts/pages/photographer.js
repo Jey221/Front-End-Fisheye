@@ -8,7 +8,7 @@ import listenForLikes from '../utils/like.js';
 import lightbox from '../utils/lightbox.js';
 
 // création d'une constante correspondante a l'URL
-// const idPage = window.location.search.split('?id=').join('');
+const idPage = parseInt(window.location.search.split('?id=').join(''), 10);
 
 // mise en place d'une fonction pour recupèrer infos du json
 async function getInfosPhotographer(idPage) {
@@ -23,8 +23,8 @@ async function getInfosPhotographer(idPage) {
 // mise en place d'une fonction pour afficher le contenu
 async function displayData(tabPhotographe) {
   const profil = document.getElementById('photographer-profil');
-  tabPhotographe.forEach(() => {
-    const photographerModel = infoFactory(tabPhotographe);
+  tabPhotographe.forEach((photographe) => {
+    const photographerModel = infoFactory(photographe);
     const userCardDOM = photographerModel.getPhotographersInfos();
     const buttonForm = document.querySelector('.contact_button');
     profil.insertBefore(userCardDOM, buttonForm);
