@@ -3,7 +3,6 @@
 const listenForLikes = () => {
   const likes = document.querySelectorAll('.likeLabel');
   const likeEncart = document.getElementById('likeEncart');
-
   likes.forEach((like) => {
     // gestion des likes
     function manageLike(event) {

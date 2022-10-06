@@ -70,23 +70,22 @@ function mediaFactory(data, idPage) {
     likeCount.innerText = parseInt(localStorage.getItem(`like${id}`), 10);
 
     // création d'un label like
-    const likeLabel = document.createElement('label');
-    // likeZone.appendChild(likeLabel);
+    const likeLabel = document.createElement('a');
+    likeZone.appendChild(likeLabel);
     likeLabel.setAttribute('for', id);
     likeLabel.setAttribute('tabindex', '0');
-    likeLabel.setAttribute('aria-label', 'like');
     likeLabel.classList.add('likeLabel');
 
     // création d'un Input like
     const likeZoneInput = document.createElement('input');
-    likeZone.appendChild(likeZoneInput);
+    likeLabel.appendChild(likeZoneInput);
     likeZoneInput.setAttribute('id', `like_${id}`);
     likeZoneInput.setAttribute('type', 'checkbox');
     likeZoneInput.setAttribute('aria-label', 'cliquer pou liker');
 
     // mise en place d'un icon coeur
     const heartCheck = document.createElement('i');
-    likeZone.appendChild(heartCheck);
+    likeLabel.appendChild(heartCheck);
     heartCheck.setAttribute('class', 'fa-solid fa-heart unchecked');
     heartCheck.setAttribute('role', 'button');
     heartCheck.setAttribute('aria-label', 'button coeur');
