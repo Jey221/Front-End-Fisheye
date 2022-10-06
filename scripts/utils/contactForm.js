@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 // gestion du formulaire
 // mise en place du focus sur le formulaire
