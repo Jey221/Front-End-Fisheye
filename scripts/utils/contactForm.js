@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 // gestion du formulaire
 // mise en place du focus sur le formulaire
@@ -24,6 +22,7 @@ function closeModal() {
   modal.setAttribute('aria-hidden', 'true');
   document.getElementById('main').setAttribute('aria-hidden', 'false');
 }
+
 // fonction de fermeture du modal de contact avec touche Echap
 document.addEventListener('keydown', (e) => {
   const isTabPressed = e.key === 'Escape';
@@ -35,7 +34,6 @@ document.addEventListener('keydown', (e) => {
 // gestion de la nav sur le formulaie avec la touche tab
 document.addEventListener('keydown', (e) => {
   const isTabPressed = e.key === 'Tab';
-
   if (!isTabPressed) { // si une autre touche que tab est préssée
     return;
   }
@@ -75,7 +73,7 @@ document.getElementById('boutonEnvoyer').addEventListener('click', (e) => {
   } else {
     smallFirst.innerHTML = '';
     firstName.classList.remove('error');
-    const valid = true;
+    console.log(`prénom = ${firstName.value}`);
   }
 
   // validation nom et création si valide de la variables valid1
@@ -86,7 +84,7 @@ document.getElementById('boutonEnvoyer').addEventListener('click', (e) => {
   } else {
     lastName.classList.remove('error');
     smallLast.innerHTML = '';
-    const valid1 = true;
+    console.log(`nom = ${lastName.value}`);
   }
 
   // validation email et création si valide de la variables valid2
@@ -105,7 +103,7 @@ document.getElementById('boutonEnvoyer').addEventListener('click', (e) => {
   } else {
     email.classList.remove('error');
     smallEmail.innerHTML = '';
-    const valid2 = true;
+    console.log(`email = ${email.value}`);
   }
 
   // validation message et création si valide de la variables valid3
@@ -116,14 +114,6 @@ document.getElementById('boutonEnvoyer').addEventListener('click', (e) => {
   } else {
     smallMessage.innerHTML = '';
     message.classList.remove('error');
-    const valid3 = true;
-  }
-
-  // envoi des infos dans la console
-  if (valid === true && valid1 === true && valid2 === true && valid3 === true) {
-    console.log(`prénom = ${firstName.value}`);
-    console.log(`nom = ${lastName.value}`);
-    console.log(`email = ${email.value}`);
     console.log(`message = ${message.value}`);
   }
 });
