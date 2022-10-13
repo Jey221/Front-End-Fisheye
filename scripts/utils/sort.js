@@ -24,7 +24,7 @@ const titleSort = (tabMedia) => {
   tabMedia.sort((a, b) => a.title.localeCompare(b.title));
 };
 
-// option de la listbox
+// option de la box de tri
 const clickListbox = (tabMedia, idPage) => {
   const listboxOption = document.querySelectorAll('.listboxOption');
   listboxOption.forEach((option) => {
@@ -44,7 +44,7 @@ const clickListbox = (tabMedia, idPage) => {
     });
     // écouteur clavier
     option.addEventListener('keydown', (e) => {
-      // mise en place du focus sur la listbox et gestion de l'ouverture/fermeture via clavier
+      // mise en place du focus sur la box de tri et gestion de la navigation via clavier
       const focusableListboxOption = 'div';
       const modalListbox = document.getElementById('options');
       const focusableContent = modalListbox.querySelectorAll(focusableListboxOption);
@@ -79,6 +79,7 @@ const clickListbox = (tabMedia, idPage) => {
   });
 };
 
+// ouverture de la box de tri
 function openListbox(tabMedia, idPage) {
   listboxContainer.setAttribute('aria-expanded', 'true');
   listbox.style.setProperty('display', 'flex');
@@ -86,6 +87,8 @@ function openListbox(tabMedia, idPage) {
   iconActuel.style.setProperty('display', 'none');
   clickListbox(tabMedia, idPage);
 }
+
+// fermeture de la box de tri
 function closeListbox() {
   listboxContainer.setAttribute('aria-expanded', 'false');
   listbox.style.setProperty('display', 'none');
@@ -93,7 +96,7 @@ function closeListbox() {
   iconActuel.style.setProperty('display', 'block');
 }
 
-// fonction pour l'ouverture de la listbox pour le tri
+// écouteur souris sur la box de tri et lancement des fonctions ouverture/fermeture
 const openCloseListbox = (tabMedia, idPage) => {
   listboxContainer.addEventListener('click', () => {
     if (window.getComputedStyle(listbox).display === 'none') {
@@ -115,12 +118,13 @@ async function getUnorderedMediaPhotographer() {
   return ([...tabMedia]);
 }
 
-// gestion de l'ouverture et fermeture de la listbox avec clavier
+// gestion de l'ouverture et fermeture de la box de tri avec clavier
+const idPage = window.location.search.split('?id=').join('');
 const medias = await getUnorderedMediaPhotographer();
 listboxContainer.addEventListener('keydown', (event) => {
   switch (event.key) {
     case 'Enter':
-      openListbox(medias);
+      openListbox(medias, idPage);
       break;
     case 'Escape':
       closeListbox();

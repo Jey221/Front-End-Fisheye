@@ -11,6 +11,7 @@ import displayDataMedia from '../factories/media.js';
 // création d'une constante correspondante a l'URL
 const id = parseInt(window.location.search.split('?id=').join(''), 10);
 
+// initiation des medias
 async function initMedia(idPage) {
   // Récupère les datas des photographes
   const tabMedia = await getMediaPhotographer(idPage);
@@ -38,6 +39,7 @@ async function displayData(photographer) {
   profil.insertBefore(userCardDOM, buttonForm);
 }
 
+// initiation des fonctions sur la page des photographes
 async function init(idPage) {
   // Récupère les datas des photographes
   const photographer = await getInfosPhotographer(idPage);

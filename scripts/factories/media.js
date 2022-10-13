@@ -1,7 +1,4 @@
-// mise en place des fonction pour les medias sur la page photographers
-// création d'une constante correspondante a l'id du photographe affiché
-// const idPage = window.location.search.split('?id=').join('');
-
+// intégration sur page photographer
 // mise en place d'une fonction pour l'intégration des medias dans la galerie
 function mediaFactory(data, idPage) {
   function getPhotographersMedias() {
@@ -11,6 +8,7 @@ function mediaFactory(data, idPage) {
     const article = document.createElement('article');
     article.setAttribute('id', `article-${id}`);
     gallery.appendChild(article);
+
     // créer les espaces pour le media cliquable
     const card = document.createElement('div');
     const links = document.createElement('a');
@@ -21,25 +19,27 @@ function mediaFactory(data, idPage) {
     links.setAttribute('aria-label', `Ouverture de la lightbox avec le media ${videoName || pictureName}`);
     article.appendChild(card);
     card.appendChild(links);
-    // intégrer le media
+
+    // intégrer le media selon sont type
     let articleMedia;
     if (data.image) {
-      const titlePicture = data.title;
       articleMedia = document.createElement('img');
       articleMedia.setAttribute('src', `assets/picture/${idPage}/${pictureName}`);
-      links.appendChild(articleMedia);
       articleMedia.setAttribute('class', 'medias image');
-      articleMedia.setAttribute('id', id);
-      articleMedia.setAttribute('alt', titlePicture);
     } else if (data.video) {
-      const titlePicture = data.title;
       articleMedia = document.createElement('video');
       articleMedia.setAttribute('src', `assets/picture/${idPage}/${videoName}`);
-      links.appendChild(articleMedia);
       articleMedia.setAttribute('class', 'medias video');
-      articleMedia.setAttribute('alt', titlePicture);
-      articleMedia.setAttribute('id', id);
     }
+    links.appendChild(articleMedia);
+
+    // mise en place id pour chaque media
+    articleMedia.setAttribute('id', id);
+
+    // intégrer le titre du media
+    const titlePicture = data.title;
+    articleMedia.setAttribute('alt', titlePicture);
+
     // création du pied de page
     const footer = document.createElement('footer');
     footer.setAttribute('class', 'footerMedias');
@@ -61,6 +61,7 @@ function mediaFactory(data, idPage) {
     const likeZone = document.createElement('div');
     footer.appendChild(likeZone);
     likeZone.setAttribute('class', 'likeZone');
+
     // compteur de like
     const likeCount = document.createElement('span');
     likeZone.appendChild(likeCount);

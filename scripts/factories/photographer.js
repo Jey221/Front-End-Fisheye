@@ -1,9 +1,12 @@
-// mise en place des infos et images des photographe sur la pâge d'accueil
+// mise en place des infos et images des photographes sur la pâge d'accueil
 export default function photographerFactory(data) {
   const {
     name, portrait, city, country, tagline, price,
   } = data;
+  // récupération des photos de profil des photographes
   const picture = `assets/photographers/${portrait}`;
+
+  // mise en place des cartes photographes
   function getUserCardDOM() {
     // création des éléments du DOM
     // création des articles

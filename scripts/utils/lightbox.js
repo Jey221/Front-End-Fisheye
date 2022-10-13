@@ -1,10 +1,6 @@
 // gestion de la lightbox
-// import { getMediaPhotographer } from './function';
-
 // récupération des datas
 const idPage = window.location.search.split('?id=').join('');
-/* const promise = getMediaPhotographer(idPage);
-const data = await promise.catch(() => false); */
 
 // création de la classe lightbox
 class Lightbox {
@@ -35,31 +31,27 @@ class Lightbox {
     const spanInfo = this.element.querySelector('#infoMediaLightbox');
     const target = url.split(`assets/picture/${idPage}/`).join('');
     const typeImage = url.includes('.jpg');
+    //  affichage du media selon sont type
     let media;
     if (typeImage === true) {
       // Si Image
       media = document.createElement('img');
       media.classList.add('imageLightbox');
       media.setAttribute('src', url);
-      media.setAttribute('alt', document.getElementById(target).innerHTML);
-      media.setAttribute('tabindex', '0');
-      containerMedia.lastChild.remove();
-      containerMedia.appendChild(media);
       this.url = url;
-      spanInfo.textContent = document.getElementById(target).innerHTML;
     } else {
       // Si Video
       media = document.createElement('video');
       media.classList.add('videoLightbox');
       media.setAttribute('src', url);
-      media.setAttribute('alt', document.getElementById(target).innerHTML);
-      media.setAttribute('tabindex', '0');
       media.controls = true;
-      containerMedia.lastChild.remove();
-      containerMedia.appendChild(media);
       this.url = url;
-      spanInfo.textContent = document.getElementById(target).innerHTML;
     }
+    containerMedia.lastChild.remove();// nettoyage de l'ancien affichage
+    containerMedia.appendChild(media);// mise en place du nouveau
+    media.setAttribute('alt', document.getElementById(target).innerHTML);
+    media.setAttribute('tabindex', '0');
+    spanInfo.textContent = document.getElementById(target).innerHTML;
   }
 
   // création des fonctions claviers

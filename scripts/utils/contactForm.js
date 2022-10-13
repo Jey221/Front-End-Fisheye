@@ -69,48 +69,45 @@ document.getElementById('boutonEnvoyer').addEventListener('click', (e) => {
   if (firstName.value.length < 2) {
     firstName.classList.add('error');
     smallFirst.innerHTML = 'Veuillez entrer 2 caractères ou plus pour le champ prénom.';
-    firstName.focus();
+  // firstName.focus();
   } else {
     smallFirst.innerHTML = '';
     firstName.classList.remove('error');
     console.log(`prénom = ${firstName.value}`);
   }
-
   // validation nom et création si valide de la variables valid1
   if (lastName.value.length < 2) {
     lastName.classList.add('error');
     smallLast.innerHTML = 'Veuillez entrer 2 caractères ou plus pour le champ nom.';
-    lastName.focus();
+  // lastName.focus();
   } else {
     lastName.classList.remove('error');
     smallLast.innerHTML = '';
     console.log(`nom = ${lastName.value}`);
   }
-
   // validation email et création si valide de la variables valid2
   if (email.value === '') {
     email.classList.add('error');
     smallEmail.innerHTML = 'Vous devez entrer une adresse email valide.';
-    email.focus();
+  // email.focus();
   } else if (email.value.indexOf('@', 0) < 0) {
     email.classList.add('error');
     smallEmail.innerHTML = 'Vous devez entrer une adresse email valide.';
-    email.focus();
+  // email.focus();
   } else if (email.value.indexOf('.', 0) < 0) {
     email.classList.add('error');
     smallEmail.innerHTML = 'Vous devez entrer une adresse email valide.';
-    email.focus();
+  // email.focus();
   } else {
     email.classList.remove('error');
     smallEmail.innerHTML = '';
     console.log(`email = ${email.value}`);
   }
-
   // validation message et création si valide de la variables valid3
   if (message.value.length < 3) {
     message.classList.add('error');
     smallMessage.innerHTML = 'Veuillez inscrire un message à destination du photographe.';
-    message.focus();
+  // message.focus();
   } else {
     smallMessage.innerHTML = '';
     message.classList.remove('error');
