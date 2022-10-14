@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 // gestion des tris sur la page des photographes
 // IMPORT
 import lightbox from './lightbox.js';

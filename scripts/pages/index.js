@@ -1,17 +1,7 @@
 // mise en place de la page d'accueil
 // import des informations et image depuis la factorie
-// eslint-disable-next-line import/extensions
 import photographerFactory from '../factories/photographer.js';
-
-// récupération des données sur le json
-async function getPhotographers() {
-  const response = await fetch('data/photographers.json');
-  const data = await response.json();
-  const photographers = await data.photographers;
-
-  // retourner le tableau photographers
-  return ({ photographers: [...photographers] });
-}
+import getData from '../utils/function.js';
 
 // mise en place des articles sur la page
 async function displayData(photographers) {
@@ -25,7 +15,7 @@ async function displayData(photographers) {
 
 // initiation des fonctions de la page d'accueil
 async function init() {
-  const { photographers } = await getPhotographers();
+  const { photographers } = await getData();
   displayData(photographers);
 }
 
