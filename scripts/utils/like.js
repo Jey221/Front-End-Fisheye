@@ -1,6 +1,7 @@
 // gestion des likes
 // mise en place d'une fonction pour incrémentation et décrémentation des likes
 const listenForLikes = () => {
+  // définitions des cibles
   const likes = document.querySelectorAll('.likeLabel');
   const likeEncart = document.getElementById('likeEncart');
   likes.forEach((like) => {
@@ -12,7 +13,6 @@ const listenForLikes = () => {
       } else {
         target = like.lastChild;
       }
-      // const likeEncart = document.getElementById('likeEncart');
       target.classList.toggle('unchecked');
       target.classList.toggle('checked');
       const id = like.getAttribute('for');
@@ -25,11 +25,11 @@ const listenForLikes = () => {
       }
     }
     // écouteur souris
-    like.addEventListener('click', (event) => { // à la souis
+    like.addEventListener('click', (event) => {
       manageLike(event);
     });
     // écouteur clavier
-    like.addEventListener('keydown', (event) => { // au clavier
+    like.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
         manageLike(event);
       }

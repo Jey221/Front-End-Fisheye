@@ -5,6 +5,7 @@ const idPage = window.location.search.split('?id=').join('');
 // création de la classe lightbox
 class Lightbox {
   static init() {
+    // définition des cibles et des écouteurs d'événement
     const links = Array.from(document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]'));
     const gallery = links.map((link) => link.getAttribute('href'));
     links.forEach((link) => link.addEventListener('click', (e) => {
