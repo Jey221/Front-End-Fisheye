@@ -25,7 +25,7 @@ class Lightbox {
     document.addEventListener('keyup', this.onKeyUp);
   }
 
-  // chargement de l'image
+  // chargement de l'image (methode de création)
   loadImage(url) {
     this.url = null;
     const containerMedia = this.element.querySelector('#mediaLightbox');
@@ -112,7 +112,7 @@ class Lightbox {
                 <div id="arrowRight" class="arrow next" role="navigation"><img src="assets/icons/chevron-right-solid.svg" aria-label="aller au media suivant" alt="suivant" tabindex="0"/></div>
                 <div id="closeLightbox" role="navigation"><img id="closeLightboxImage" src="assets/icons/close2.svg" aria-label="fermer la lightbox" alt="fermeture" tabindex="0"/></div>
             </section>`;
-    // mise en place des fonction de navigation //
+    // mise en place des fonction de navigation souris//
     dom.querySelector('#closeLightbox').addEventListener('click', this.close.bind(this));
     dom.querySelector('#arrowLeft').addEventListener('click', this.prev.bind(this));
     dom.querySelector('#arrowRight').addEventListener('click', this.next.bind(this));
