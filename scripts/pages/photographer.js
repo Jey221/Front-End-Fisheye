@@ -1,5 +1,5 @@
 // Mettre le code JavaScript lié à la page photographer.html
-// mise en place des infos surr la page photogaphe
+// mise en place des infos sur la page photogaphe
 // import des données
 import infoFactory from '../factories/info.js';
 import listenForLikes from '../utils/like.js';
@@ -11,7 +11,7 @@ import getData from '../utils/function.js';
 // création d'une constante correspondante a l'URL
 const id = parseInt(window.location.search.split('?id=').join(''), 10);
 
-// mise en place d'une fonction pour recupèrer infos du json
+// mise en place d'une fonction pour recupèrer les infos du json
 async function getInfosPhotographer(idPage) {
   const data = await getData();
   const photographers = await data.photographers;
@@ -19,7 +19,7 @@ async function getInfosPhotographer(idPage) {
   const photographer = photographers.find((value) => value.id === idPage);
   return photographer;
 }
-
+// mise en place d'une fonction pour recupèrer les medias du json
 export default async function getMediaPhotographer(idPage) {
   const data = await getData();
   const media = await data.media;
@@ -30,7 +30,7 @@ export default async function getMediaPhotographer(idPage) {
   return tabMedia;
 }
 
-// initiation des medias
+// initiation des medias dans la galerie
 async function initMedia(idPage) {
   // Récupère les datas des photographes
   const tabMedia = await getMediaPhotographer(idPage);
@@ -39,7 +39,7 @@ async function initMedia(idPage) {
   lightbox.init();
 }
 
-// mise en place d'une fonction pour afficher le contenu
+// mise en place d'une fonction pour afficher les infos du photographe
 async function displayData(photographer) {
   const profil = document.getElementById('photographer-profil');
   const photographerModel = infoFactory(photographer);

@@ -29,10 +29,10 @@ const clickListbox = (tabMedia, idPage) => {
   listboxOption.forEach((option) => {
     // écouteur souris
     option.addEventListener('click', (e) => {
-      listboxOptionActuelle.innerHTML = e.path[0].innerHTML;
-      if (e.path[0].innerHTML === 'Popularité') {
+      listboxOptionActuelle.innerHTML = e.target.innerHTML;
+      if (e.target.innerHTML === 'Popularité') {
         popularitySort(tabMedia);
-      } else if (e.path[0].innerHTML === 'Date') {
+      } else if (e.target.innerHTML === 'Date') {
         dateSort(tabMedia);
       } else {
         titleSort(tabMedia);
@@ -57,10 +57,10 @@ const clickListbox = (tabMedia, idPage) => {
           }
           break;
         case 'Enter':
-          listboxOptionActuelle.innerHTML = e.path[0].innerHTML;
-          if (e.path[0].innerHTML === 'Popularité') {
+          listboxOptionActuelle.innerHTML = e.target.innerHTML;
+          if (e.target.innerHTML === 'Popularité') {
             popularitySort(tabMedia);
-          } else if (e.path[0].innerHTML === 'Date') {
+          } else if (e.target.innerHTML === 'Date') {
             dateSort(tabMedia);
           } else {
             titleSort(tabMedia);
